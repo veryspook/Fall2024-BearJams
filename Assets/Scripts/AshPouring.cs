@@ -87,9 +87,9 @@ public class AshPouring : MonoBehaviour
 		ashRemaining -= drainSpeed * Time.deltaTime;
 		ashRemaining = Mathf.Max(ashRemaining, 0);
 
-		float spillAmount = drainSpeed * (pourWidth - Mathf.Max(0, Mathf.Min(pourBounds.y, funnelBounds.y) - Mathf.Max(pourBounds.x, pourBounds.x)));
+		float spillAmount = drainSpeed * (pourWidth - Overlap(pourBounds, funnelBounds));
 
-		if (spillAmount > 0.02)
+		if (spillAmount > 0.01)
 			Debug.Log(spillAmount);
 
 		if (spillParticles)
@@ -105,5 +105,10 @@ public class AshPouring : MonoBehaviour
 	private Vector2 GetMousePos()
 	{
 		return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+	}
+
+	private float Overlap(Vector2 a, Vector2 b)
+	{
+		return Mathf.Max(0, Mathf.Min(a.y, b.y) - Mathf.Max(a.x, b.x));
 	}
 }
