@@ -5204,3 +5204,27 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  spillParticleForAmount:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.00062942505
+      value: 0
+      inSlope: 6674.7886
+      outSlope: 6674.7886
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.10223595
+    - serializedVersion: 3
+      time: 0.3
+      value: 700
+      inSlope: 207.80452
+      outSlope: 207.80452
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.2804266
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

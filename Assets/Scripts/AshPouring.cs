@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Drawing.Inspector.PropertyDrawers;
 using UnityEditor.UIElements;
 using UnityEngine;
 
@@ -24,6 +25,8 @@ public class AshPouring : MonoBehaviour
 	[SerializeField] private float ashRemaining = 0.8f;
 	[Header("Ash Pouring")]
 	[SerializeField] private float funnelWidth = 0.9f;
+	private Vector2 funnelBounds;
+	// DO NOT RENAME ANY OF THE ANIMATION CURVES OR I WILL EAT YOU
 	[SerializeField] private AnimationCurve thresholdAngleForNoAsh;
 	[SerializeField] private AnimationCurve drainSpeedForOverThreshold;
 	[SerializeField] private AnimationCurve pourWidthOverAngle;
@@ -33,11 +36,14 @@ public class AshPouring : MonoBehaviour
 	[SerializeField] private AnimationCurve pourParticleForSpeed;
 	[SerializeField] private AnimationCurve pourParticleAngleForSpeed;
 	[SerializeField] private AnimationCurve pourLifetimeForAngle;
+	[SerializeField] private AnimationCurve spillParticleForAmount;
+
 
 	private void Start()
 	{
 		pourPointStartPos = pourPoint.position;
 		currentAngle = startAngle;
+		funnelBounds = new Vector2(-funnelWidth / 2, funnelWidth / 2);
 	}
 
 	// Update is called once per frame
@@ -68,9 +74,10 @@ public class AshPouring : MonoBehaviour
 		float drainSpeed = drainSpeedForOverThreshold.Evaluate(currentAngle - thresholdAngleForNoAsh.Evaluate(ashRemaining));
 		if (ashRemaining <= 0)
 			drainSpeed = 0;
+		float pourWidth = pourWidthOverAngle.Evaluate(currentAngle) / 2 + pourWidthOverSpeed.Evaluate(currentAngle);
 		Vector2 pourBounds = new Vector2(
-			pourOffsetOverAngle.Evaluate(currentAngle) - pourWidthOverAngle.Evaluate(currentAngle) / 2 - pourWidthOverSpeed.Evaluate(currentAngle) / 2 + pourPoint.position.x,
-			pourOffsetOverAngle.Evaluate(currentAngle) + pourWidthOverAngle.Evaluate(currentAngle) / 2 + pourWidthOverSpeed.Evaluate(currentAngle) / 2 + pourPoint.position.x);
+			pourOffsetOverAngle.Evaluate(currentAngle) - pourWidth / 2 + pourPoint.position.x,
+			pourOffsetOverAngle.Evaluate(currentAngle) + pourWidth / 2 + pourPoint.position.x);
 		ParticleSystem.EmissionModule em = ashParticles.emission;
 		em.rateOverTime = pourParticleForSpeed.Evaluate(drainSpeed);
 		ParticleSystem.MainModule m = ashParticles.main;
@@ -79,6 +86,17 @@ public class AshPouring : MonoBehaviour
 		s.arc = pourParticleAngleForSpeed.Evaluate(drainSpeed);
 		ashRemaining -= drainSpeed * Time.deltaTime;
 		ashRemaining = Mathf.Max(ashRemaining, 0);
+
+		float spillAmount = drainSpeed * (pourWidth - Mathf.Max(0, Mathf.Min(pourBounds.y, funnelBounds.y) - Mathf.Max(pourBounds.x, pourBounds.x)));
+
+		if (spillAmount > 0.02)
+			Debug.Log(spillAmount);
+
+		if (spillParticles)
+		{
+			ParticleSystem.EmissionModule ems = spillParticles.emission;
+			ems.rateOverTime = spillParticleForAmount.Evaluate(spillAmount);
+		}
 
 		Debug.DrawLine(new Vector3(-funnelWidth/2, 1, 0), new Vector3(funnelWidth/2, 1, 0), Color.cyan);
 		Debug.DrawLine(new Vector3(pourBounds.x, 0.8f, 0), new Vector3(pourBounds.y, 0.8f, 0), Color.red);
