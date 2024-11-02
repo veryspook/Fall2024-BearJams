@@ -79,7 +79,7 @@ public class AshPouring : MonoBehaviour
 		float drainSpeed = drainSpeedForOverThreshold.Evaluate(currentAngle - thresholdAngleForNoAsh.Evaluate(ashRemaining));
 		if (ashRemaining <= 0)
 			drainSpeed = 0;
-		float pourWidth = pourWidthOverAngle.Evaluate(currentAngle) / 2 + pourWidthOverSpeed.Evaluate(currentAngle);
+		float pourWidth = pourWidthOverAngle.Evaluate(currentAngle) / 2 + pourWidthOverSpeed.Evaluate(drainSpeed);
 		Vector2 pourBounds = new Vector2(
 			pourOffsetOverAngle.Evaluate(currentAngle) - pourWidth / 2 + pourPoint.position.x,
 			pourOffsetOverAngle.Evaluate(currentAngle) + pourWidth / 2 + pourPoint.position.x);
