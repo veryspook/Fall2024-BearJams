@@ -1272,6 +1272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragSpeed: 5
+  scrambleStrength: 25
   movableLayers:
     serializedVersion: 2
     m_Bits: 16384
