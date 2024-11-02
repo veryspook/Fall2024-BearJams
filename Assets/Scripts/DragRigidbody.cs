@@ -77,7 +77,7 @@ public class DragAll : MonoBehaviour
 
 	public Bounds GetBoundingBox()
 	{
-		Bounds b = new Bounds();
+		Bounds b = GetComponentInChildren<Collider2D>().bounds;
 		foreach (Rigidbody2D rb in rbList)
 		{
 			Collider2D[] cs = new Collider2D[rb.attachedColliderCount];
