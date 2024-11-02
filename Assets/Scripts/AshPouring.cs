@@ -23,6 +23,7 @@ public class AshPouring : MonoBehaviour
 	[SerializeField] private Vector2 angleBounds;
 	[SerializeField] private Vector2 movementBounds;
 	[SerializeField] private float ashRemaining = 0.8f;
+	[SerializeField] private float amountSpilled = 0f;
 	[Header("Ash Pouring")]
 	[SerializeField] private float funnelWidth = 0.9f;
 	private Vector2 funnelBounds;
@@ -42,8 +43,12 @@ public class AshPouring : MonoBehaviour
 	private void Start()
 	{
 		pourPointStartPos = pourPoint.position;
-		currentAngle = startAngle;
 		funnelBounds = new Vector2(-funnelWidth / 2, funnelWidth / 2);
+	}
+
+	private void OnEnable()
+	{
+		currentAngle = startAngle;
 	}
 
 	// Update is called once per frame
@@ -87,10 +92,10 @@ public class AshPouring : MonoBehaviour
 		ashRemaining -= drainSpeed * Time.deltaTime;
 		ashRemaining = Mathf.Max(ashRemaining, 0);
 
-		float spillAmount = drainSpeed * (pourWidth - Overlap(pourBounds, funnelBounds));
+		float spillAmount = drainSpeed * (1 - Overlap(pourBounds, funnelBounds) / pourWidth);
 
 		if (spillAmount > 0.01)
-			Debug.Log(spillAmount);
+			amountSpilled += spillAmount * Time.deltaTime;
 
 		if (spillParticles)
 		{

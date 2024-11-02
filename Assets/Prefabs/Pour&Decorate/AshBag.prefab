@@ -5002,6 +5002,7 @@ MonoBehaviour:
   angleBounds: {x: -50, y: 90}
   movementBounds: {x: -1.5, y: 0}
   ashRemaining: 0.8
+  amountSpilled: 0
   funnelWidth: 1.8
   thresholdAngleForNoAsh:
     serializedVersion: 2
@@ -5065,7 +5066,7 @@ MonoBehaviour:
       outWeight: 0.065040655
     - serializedVersion: 3
       time: 90
-      value: 1.5
+      value: 1.7
       inSlope: 0.0024475008
       outSlope: 0.0024475008
       tangentMode: 0
@@ -5217,7 +5218,7 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.10223595
     - serializedVersion: 3
-      time: 0.3
+      time: 0.1
       value: 700
       inSlope: 207.80452
       outSlope: 207.80452
