@@ -1,18 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class DragRigidbody : MonoBehaviour
+public class DragAll : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	private Transform dragging = null;
+	private Vector3 offset;
+	[SerializeField] private float dragSpeed = 10;
+	[SerializeField] private LayerMask movableLayers;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	// Update is called once per frame
+	void Update()
+	{
+		if (Input.GetMouseButtonDown(0))
+		{
+			// Cast our own ray.
+			RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero,
+												 float.PositiveInfinity, movableLayers);
+			if (hit)
+			{
+				// If we hit, record the transform of the object we hit.
+				dragging = hit.transform;
+				// And record the offset.
+				offset = dragging.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			}
+		}
+		else if (Input.GetMouseButtonUp(0))
+		{
+			// Stop dragging.
+			dragging = null;
+		}
+
+		if (dragging != null)
+		{
+			// Move object, taking into account original offset.
+			// dragging.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
+			Rigidbody2D rb = dragging.GetComponent<Rigidbody2D>();
+			if (rb != null)
+			{
+				rb.AddForce(dragSpeed * ((Vector2) (Camera.main.ScreenToWorldPoint(ClampedMouse()) + offset) - rb.position));
+			}
+		}
+	}
+
+	private Vector3 ClampedMouse()
+	{
+		return new Vector3(Mathf.Clamp(Input.mousePosition.x, 0, Screen.width), Mathf.Clamp(Input.mousePosition.y, 0, Screen.height));
+	}
 }
