@@ -100,7 +100,7 @@ public class DragCorpse : MonoBehaviour
 		manager.currentCustomer = null;
 		Destroy(gameObject, 1f);
 		GameManager.instance.ChangeStation(GameManager.instance.burn);
-		yield return new WaitForSeconds(0.15f);
+		yield return new WaitForSeconds(0.2f);
 		coffinAnimator.SetTrigger("Exit");
 	}
 

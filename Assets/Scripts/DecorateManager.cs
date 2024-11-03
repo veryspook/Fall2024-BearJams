@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +11,7 @@ public class DecorateManager : MonoBehaviour, IStation
     public List<GameObject> urns = new List<GameObject>();
     public List<Sprite> urnSprites = new List<Sprite>();
     public List<FlowerSource> flowerSources = new List<FlowerSource>();
-    public GameObject decorations;
+    public List<GameObject> decorations;
 
     public Customer currentCustomer { get; set; }
     public List<Customer> customerQueue { get; set; } = new List<Customer>();
@@ -19,12 +20,15 @@ public class DecorateManager : MonoBehaviour, IStation
     public Urn urn;
     public Canvas selectUrnUI;
     public Image selectUrnImage;
+    public Canvas submitButton;
+    public ResultsManager resultsManager;
 
 
 	public void Enter()
     {
         if (currentCustomer == null && customerQueue.Count > 0)
         {
+            submitButton.enabled = false;
             currentCustomer = customerQueue[0];
             customerQueue.RemoveAt(0);
             selectUrnUI.enabled = true;
@@ -41,10 +45,18 @@ public class DecorateManager : MonoBehaviour, IStation
         }
 	}
 
-    public void Finish(Customer c)
+    public void Finish()
     {
-        c.decorScore = GetScore(c);
-		c.pourScore = Mathf.Clamp01(1 - ashBag.amountSpilled * 4 / c.carcassWeight);
+        OrderManager om = GameManager.instance.orderManager;
+        if (om.pinned)
+        {
+            Customer c = om.pinned.customer;
+            c.decorScore = GetScore(c);
+            c.pourScore = Mathf.Clamp01(1 - ashBag.amountSpilled * 4 / c.carcassWeight);
+            urn.gameObject.SetActive(false);
+            submitButton.enabled = false;
+            resultsManager.DisplayResults(c);
+        }
 	}
 
 	public void Enqueue(Customer customer)
@@ -73,6 +85,7 @@ public class DecorateManager : MonoBehaviour, IStation
         yield return new WaitForSeconds(0.3f);
         ashBag.gameObject.SetActive(false);
         urn.ShowTargets();
+        submitButton.enabled = true;
         foreach (FlowerSource fs in flowerSources)
             fs.draggable = true;
 	}
@@ -150,5 +163,4 @@ public class DecorateManager : MonoBehaviour, IStation
         return finalScore;
     }
 
-	
 }

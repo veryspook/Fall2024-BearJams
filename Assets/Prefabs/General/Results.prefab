@@ -142,7 +142,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: To Rest
+  m_text: Coffin
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0239a42fd81d33d4793f98828f9297b6, type: 2}
   m_sharedMaterial: {fileID: -7048921534148513575, guid: 0239a42fd81d33d4793f98828f9297b6, type: 2}
@@ -1256,7 +1256,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Decorate
+  m_text: Decor
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0239a42fd81d33d4793f98828f9297b6, type: 2}
   m_sharedMaterial: {fileID: -7048921534148513575, guid: 0239a42fd81d33d4793f98828f9297b6, type: 2}

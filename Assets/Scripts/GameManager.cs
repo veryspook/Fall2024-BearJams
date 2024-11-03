@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
-using static System.Collections.Specialized.BitVector32;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+	public const int MAX_CUSTOMERS = 5;
+	
 	public static GameManager instance;
-	public List<Customer> waitingCustomers;
 	public OrderManager orderManager;
 
 	public GameObject frontDesk;
@@ -18,6 +20,14 @@ public class GameManager : MonoBehaviour
 	public GameObject currentStation;
 	[SerializeField] GameObject bottomBar;
 	private Animator animator;
+	public TextMeshProUGUI customersInLineText;
+	public Image newCustomerClock;
+	public LifeManager lifeManager;
+
+	private float nextCustomerTime;
+	private float customerCooldown = 30;
+	private float gameDuration = 0;
+	public float score = 0;
 
 	public enum Urns
 	{
@@ -45,12 +55,27 @@ public class GameManager : MonoBehaviour
 		StartCoroutine(CustomerFlow());
 	}
 
+	private void Update()
+	{
+		customersInLineText.text = frontDesk.GetComponent<IStation>().customerQueue.Count + "/" + MAX_CUSTOMERS + " Customers in Line";
+		gameDuration += Time.deltaTime;
+		nextCustomerTime -= Time.deltaTime;
+		newCustomerClock.fillAmount = Mathf.Clamp01(nextCustomerTime / customerCooldown);
+	}
+
 	private IEnumerator CustomerFlow()
 	{
+
 		while (true)
 		{
-			frontDesk.GetComponent<IStation>().Enqueue(Customer.Generate());
-			yield return new WaitForSeconds(20);
+			customerCooldown = Mathf.Max(7, 30 - Mathf.Sqrt(gameDuration));
+			nextCustomerTime = customerCooldown;
+			if (frontDesk.GetComponent<IStation>().customerQueue.Count < MAX_CUSTOMERS)
+				frontDesk.GetComponent<IStation>().customerQueue.Add(Customer.Generate());
+			else
+				lifeManager.LoseLife();
+
+			yield return new WaitUntil(() => nextCustomerTime <= 0);
 		}
 	}
 
