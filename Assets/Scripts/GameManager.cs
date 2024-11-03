@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
 
 	public Sprite WeightToSprite(float weight)
 	{
-		if (0.5f <= weight && weight < 0.6f)
+		if (weight < 0.6f)
 		{
 			return weightIcons[0];
 		}
