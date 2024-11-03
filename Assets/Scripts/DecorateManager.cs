@@ -57,6 +57,8 @@ public class DecorateManager : MonoBehaviour
     {
 		selectUrnUI.enabled = false;
 		urn = urns[currentUrn].GetComponent<Urn>();
+        foreach (GameObject d in urn.decorations)
+            Destroy(d);
 		urn.gameObject.SetActive(true);
 		urn.animator.SetBool("Open", true);
         foreach (FlowerSource fs in flowerSources)
@@ -138,7 +140,7 @@ public class DecorateManager : MonoBehaviour
             totalAccuracy += min;
             goals.Remove(best);
         }
-        float finalScore = Mathf.Min(0, 10 - totalAccuracy);
+        float finalScore = Mathf.Clamp01((5 - totalAccuracy) / 5);
         if (extraItems < 0)
         {
             finalScore *= urn.decorations.Count / 3;
