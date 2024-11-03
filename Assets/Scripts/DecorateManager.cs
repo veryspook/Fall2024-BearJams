@@ -26,6 +26,8 @@ public class DecorateManager : MonoBehaviour, IStation
 
 	public void Enter()
     {
+        Debug.Log(currentCustomer);
+        Debug.Log(customerQueue);
         if (currentCustomer == null && customerQueue.Count > 0)
         {
             submitButton.enabled = false;
@@ -42,7 +44,11 @@ public class DecorateManager : MonoBehaviour, IStation
             {
                 f.draggable = false;
             }
-        }
+        } else
+        {
+			selectUrnUI.enabled = false;
+
+		}
 	}
 
     public void Finish()
@@ -51,10 +57,13 @@ public class DecorateManager : MonoBehaviour, IStation
         if (om.pinned)
         {
             Customer c = om.pinned.customer;
+            Debug.Log(c);
             c.decorScore = GetScore(c);
             c.pourScore = Mathf.Clamp01(1 - ashBag.amountSpilled * 4 / c.carcassWeight);
             urn.gameObject.SetActive(false);
             submitButton.enabled = false;
+            Destroy(om.pinned.gameObject);
+            om.pinned = null;
             resultsManager.DisplayResults(c);
         }
 	}
@@ -62,7 +71,7 @@ public class DecorateManager : MonoBehaviour, IStation
 	public void Enqueue(Customer customer)
 	{
 		customerQueue.Add(customer);
-
+        Debug.Log(customer.ToString());
 	}
 
 	public IEnumerator EnterCoroutine()

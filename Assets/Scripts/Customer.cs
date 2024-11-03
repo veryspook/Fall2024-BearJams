@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Customer
+public class Customer : ScriptableObject
 {
     public const int DECORATION_COUNT = 3;
 
@@ -16,6 +16,11 @@ public class Customer
         carcassWeight = weight;
         desiredUrn = _desiredUrn;
         desiredFlowers = flowers;
+    }
+    
+    public string ToString()
+    {
+        return desiredFlowers.ToString() + " " + desiredUrn.ToString() + " " + carcassWeight; 
     }
 
     public static Customer Generate()

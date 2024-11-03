@@ -15,7 +15,7 @@ public class LayToRest : MonoBehaviour, IStation
 	public void Enqueue(Customer customer)
 	{
 		customerQueue.Add(customer);
-		
+		Debug.Log(customer.ToString());
 	}
 
 	public void Enter()

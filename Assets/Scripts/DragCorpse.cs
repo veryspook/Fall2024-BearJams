@@ -25,11 +25,6 @@ public class DragCorpse : MonoBehaviour
 		coffin.GetComponent<Coffin>().corpse = this;
 	}
 
-	private void Start()
-	{
-		Enter(Customer.Generate());
-	}
-
 	public void Enter(Customer customer)
 	{
 		ApplyForce(scrambleStrength);

@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 	public TextMeshProUGUI customersInLineText;
 	public Image newCustomerClock;
 	public LifeManager lifeManager;
+	public ResultsManager resultsManager;
 
 	private float nextCustomerTime;
 	private float customerCooldown = 30;
@@ -89,13 +90,15 @@ public class GameManager : MonoBehaviour
 	public void HideBottomBar()
 	{
 		bottomBar.SetActive(false);
+		resultsManager.gameObject.SetActive(false);
 	}
 
 	public void ShowBottomBar()
 	{
 		bottomBar.SetActive(true);
+		resultsManager.gameObject.SetActive(true);
 	}
-	
+
 	public void ChangeStationToNumber(int num)
 	{
 		switch (num)
