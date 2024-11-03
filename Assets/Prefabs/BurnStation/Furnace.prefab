@@ -411,7 +411,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 1
   m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4509423283261981205
 GameObject:
@@ -466,6 +466,7 @@ MonoBehaviour:
   burnTime: 23
   slider: {fileID: 0}
   insertButton: {fileID: 0}
+  extractButton: {fileID: 0}
   fire: {fileID: 1508666909881084660}
   coffinAnim: {fileID: 8829265842592867089}
   trayAnim: {fileID: 3638844487104001011}
@@ -659,7 +660,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 1
   m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &9105476216214858927
 GameObject:

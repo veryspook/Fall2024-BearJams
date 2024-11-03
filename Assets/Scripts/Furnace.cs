@@ -20,12 +20,8 @@ public class Furnace : MonoBehaviour
     public Animator trayAnim;
     public Coroutine timer;
     public bool cooking = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-    IEnumerator Timer() {
+
+	IEnumerator Timer() {
         while (currTime < maxTime) {
             yield return new WaitForEndOfFrame();
             currTime += Time.deltaTime * (1 / customer.carcassWeight);
@@ -33,8 +29,22 @@ public class Furnace : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    float timeOfDisable;
+	private void OnDisable()
+	{
+        timeOfDisable = Time.fixedTime;
+	}
+	private void OnEnable()
+	{
+		if (cooking)
+        {
+            currTime += Time.fixedTime - timeOfDisable;
+            timer = StartCoroutine(Timer());
+        }
+	}
+
+	// Update is called once per frame
+	void Update()
     {
         if (customer == null) {
             cooking = false;
@@ -85,6 +95,6 @@ public class Furnace : MonoBehaviour
         }
 		currTime = 0f;
         customer = null;
-
+        GameManager.instance.adorn.GetComponent<IStation>().Enqueue(customer);
 	}
 }

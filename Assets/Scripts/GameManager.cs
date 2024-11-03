@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 	public GameObject adorn;
 
 	public GameObject currentStation;
+	[SerializeField] GameObject bottomBar;
 	private Animator animator;
 
 	public enum Urns
@@ -48,6 +49,16 @@ public class GameManager : MonoBehaviour
 	{
 		nextStation = station;
 		animator.SetTrigger("Fade");
+	}
+
+	public void HideBottomBar()
+	{
+		bottomBar.SetActive(false);
+	}
+
+	public void ShowBottomBar()
+	{
+		bottomBar.SetActive(true);
 	}
 	
 	public void ChangeStationToNumber(int num)

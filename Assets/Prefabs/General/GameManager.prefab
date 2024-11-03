@@ -501,6 +501,7 @@ MonoBehaviour:
   burn: {fileID: 0}
   adorn: {fileID: 0}
   currentStation: {fileID: 0}
+  bottomBar: {fileID: 8782634455217951501}
   urnSprites:
   - {fileID: 21300000, guid: 10935f2b525da4346b1f53bb543ac32c, type: 3}
   - {fileID: 21300000, guid: b11d05ae325d06f4ea23a2dcab44606a, type: 3}

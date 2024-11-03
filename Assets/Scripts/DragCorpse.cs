@@ -13,6 +13,8 @@ public class DragCorpse : MonoBehaviour
 	public Vector2 startPos;
 	public Animator coffinAnimator;
 
+	private bool locked = false;
+
 	[SerializeField] private Rigidbody2D[] rbList;
 
 	private void Awake()
@@ -30,6 +32,7 @@ public class DragCorpse : MonoBehaviour
 	public void Enter(Customer customer)
 	{
 		ApplyForce(scrambleStrength);
+		coffinAnimator.SetTrigger("Exit");
 		currentCustomer = customer;
 		foreach (Rigidbody2D rb in rbList)
 		{
@@ -55,7 +58,7 @@ public class DragCorpse : MonoBehaviour
 				offset = dragging.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			}
 		}
-		else if (Input.GetMouseButtonUp(0))
+		else if (!locked && Input.GetMouseButtonUp(0))
 		{
 			// Stop dragging.
 			dragging = null;
@@ -67,6 +70,7 @@ public class DragCorpse : MonoBehaviour
 				foreach (Collider2D c in cs)
 				{
 					if (finish == null && coffin.bounds.Intersects(c.bounds)) {
+						locked = true;
 						finish = StartCoroutine(FinishCoroutine());
 						break;
 					}
@@ -93,8 +97,7 @@ public class DragCorpse : MonoBehaviour
 		currentCustomer.layToRestScore = GetPercentCovered();
 		GameManager.instance.burn.GetComponent<IStation>().Enqueue(currentCustomer);
 		yield return new WaitForSeconds(1f);
-		Destroy(gameObject, 0.5f);
-		coffinAnimator.SetTrigger("Exit");
+		Destroy(gameObject, 1f);
 		GameManager.instance.ChangeStation(GameManager.instance.burn);
 	}
 
