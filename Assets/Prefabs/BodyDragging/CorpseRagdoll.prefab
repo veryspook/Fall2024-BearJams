@@ -1271,11 +1271,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75443acf86382134fad2cc59cab3eb54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragSpeed: 5
+  dragSpeed: 7.5
   scrambleStrength: 25
   movableLayers:
     serializedVersion: 2
     m_Bits: 16384
+  coffin: {fileID: 0}
+  startPos: {x: 0, y: 0}
+  coffinAnimator: {fileID: 0}
 --- !u!1 &6209204103390019026
 GameObject:
   m_ObjectHideFlags: 0

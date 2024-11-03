@@ -8,13 +8,7 @@ using UnityEngine.UI;
 public class OrderManager : MonoBehaviour
 {
     public List<Order> orders = new List<Order>();
-    public Sprite[] weightIcons = new Sprite[3];
-    public List<Sprite> urnIcons;
-    public List<GameManager.Urns> urns;
-    public List<Sprite> flowerIcons;
     public List<GameManager.Flowers> flowers;
-    public Dictionary<GameManager.Urns, Sprite> urnIconDict = new Dictionary<GameManager.Urns, Sprite>();
-    public Dictionary<GameManager.Flowers, Sprite> flowerIconDict = new Dictionary<GameManager.Flowers, Sprite>();
     public int orderNum = 1;
     public GameObject orderPrefab;
 
@@ -23,6 +17,7 @@ public class OrderManager : MonoBehaviour
     public float ticketFocusScale = 0.7f;
     public Vector2 ticketPinPosition;
     public RectTransform pinHitbox;
+    public RectTransform ordersParent;
     public Order pinned;
 
     // Update is called once per frame
@@ -34,36 +29,41 @@ public class OrderManager : MonoBehaviour
     public void AddOrder(Customer customer)
     {
 		GameObject orderObj = Instantiate(orderPrefab);
-        orderObj.transform.parent = transform;
+        orderObj.transform.parent = ordersParent;
 		Order order = orderObj.GetComponent<Order>();
-        SetPinned(order);
         order.manager = this;
 		order.customer = customer;
 
         order.orderNum.text = orderNum.ToString("#0000");
         orderNum++;
 
-        if (0.5f <= customer.carcassWeight && customer.carcassWeight < 0.6f)
-        {
-            order.weightClass.sprite = weightIcons[0];
-        }
-        else if (0.6f <= customer.carcassWeight && customer.carcassWeight < 0.8f)
-        {
-            order.weightClass.sprite = weightIcons[1];
-        }
-        else
-        {
-            order.weightClass.sprite = weightIcons[2];
-        }
+        //if (0.5f <= customer.carcassWeight && customer.carcassWeight < 0.6f)
+        //{
+        //    order.weightClass.sprite = weightIcons[0];
+        //}
+        //else if (0.6f <= customer.carcassWeight && customer.carcassWeight < 0.8f)
+        //{
+        //    order.weightClass.sprite = weightIcons[1];
+        //}
+        //else
+        //{
+        //    order.weightClass.sprite = weightIcons[2];
+        //}
 
-        order.urn.sprite = urnIconDict[customer.desiredUrn];
+        order.weightClass.sprite = GameManager.instance.WeightToSprite(customer.carcassWeight);
+
+        order.urn.sprite = GameManager.instance.urnSprites[(int) customer.desiredUrn];
         for (int i = 0; i < 3; i++)
         {
-            order.flowerSprites[i].sprite = flowerIcons[(int) customer.desiredFlowers[i]];
+            order.flowerSprites[i].sprite = GameManager.instance.flowerSprites[(int) customer.desiredFlowers[i]];
         }
-    }
+        order.transform.localScale = Vector3.one * ticketFocusScale;
+        order.transform.localPosition = new Vector2(ticketPinPosition.x, -200);
+		SetPinned(order);
 
-    public void SetPinned(Order o)
+	}
+
+	public void SetPinned(Order o)
     {
 		if (pinned)
 		{
@@ -76,7 +76,7 @@ public class OrderManager : MonoBehaviour
 	}
 
 	public void TestOrder() {
-        AddOrder(new Customer());
+        AddOrder(Customer.Generate());
     }
     //public void AddOrder(Customer customer) {
     //    GameObject orderObj = Instantiate(orderPrefab);

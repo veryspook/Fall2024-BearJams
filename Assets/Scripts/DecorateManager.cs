@@ -5,47 +5,41 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DecorateManager : MonoBehaviour
+public class DecorateManager : MonoBehaviour, IStation
 {
     public List<GameObject> urns = new List<GameObject>();
     public List<Sprite> urnSprites = new List<Sprite>();
     public List<FlowerSource> flowerSources = new List<FlowerSource>();
     public GameObject decorations;
 
-    public Customer currentCustomer;
+    public Customer currentCustomer { get; set; }
+    public List<Customer> customerQueue { get; set; } = new List<Customer>();
     public AshPouring ashBag;
     public int currentUrn;
     public Urn urn;
     public Canvas selectUrnUI;
     public Image selectUrnImage;
 
-	private void Start()
-	{
-        Customer c = new Customer();
-        c.carcassWeight = 1;
-        Enter(c);
-	}
 
-	public bool Enter(Customer c)
+	public void Enter()
     {
-        if (currentCustomer == null)
-        {
-			currentCustomer = c;
-			selectUrnImage.enabled = true;
-			ashBag.ashRemaining = currentCustomer.carcassWeight;
-            ashBag.amountSpilled = 0;
-			foreach (GameObject u in urns)
-			{
-				u.SetActive(false);
-			}
-            foreach (FlowerSource f in flowerSources)
-            {
-                f.draggable = false;
-            }
-            return true;
-        }
-        else
-            return false;
+        Customer customer = customerQueue[0];
+		customerQueue.RemoveAt(0);
+		currentCustomer = customer;
+		currentCustomer = customerQueue[0];
+        customerQueue.RemoveAt(0);
+
+		selectUrnImage.enabled = true;
+		ashBag.ashRemaining = currentCustomer.carcassWeight;
+		ashBag.amountSpilled = 0;
+		foreach (GameObject u in urns)
+		{
+			u.SetActive(false);
+		}
+		foreach (FlowerSource f in flowerSources)
+		{
+			f.draggable = false;
+		}
 	}
 
     public void Finish(Customer c)
@@ -53,7 +47,12 @@ public class DecorateManager : MonoBehaviour
         c.decorScore = GetScore(c);
     }
 
-    public IEnumerator EnterCoroutine()
+	public void Enqueue(Customer customer)
+	{
+		customerQueue.Add(customer);
+	}
+
+	public IEnumerator EnterCoroutine()
     {
 		selectUrnUI.enabled = false;
 		urn = urns[currentUrn].GetComponent<Urn>();
@@ -143,11 +142,13 @@ public class DecorateManager : MonoBehaviour
         float finalScore = Mathf.Clamp01((5 - totalAccuracy) / 5);
         if (extraItems < 0)
         {
-            finalScore *= urn.decorations.Count / 3;
+            finalScore *= urn.decorations.Count / Customer.DECORATION_COUNT;
         } else if (extraItems > 0)
         {
-            finalScore *= 3 / urn.decorations.Count;
+            finalScore *= Customer.DECORATION_COUNT / urn.decorations.Count;
 		}
         return finalScore;
     }
+
+	
 }

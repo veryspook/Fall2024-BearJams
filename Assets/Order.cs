@@ -21,17 +21,8 @@ public class Order : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHan
 	public TextMeshProUGUI orderNum;
 	public Image[] flowerSprites;
 
-	private bool dragging;
-
-	private void Start()
-	{
-		desiredPos = transform.localPosition;
-		desiredScale = manager.ticketFocusScale;
-	}
-
 	public void OnBeginDrag(PointerEventData eventData)
 	{
-		dragging = true;
 		desiredScale = manager.ticketFocusScale;
 	}
 
@@ -45,7 +36,6 @@ public class Order : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHan
 
 	public void OnEndDrag(PointerEventData eventData)
 	{
-		dragging = false;
 		desiredScale = manager.ticketRopeScale;
 		float managerScale = manager.transform.lossyScale.x;
 		Order p = manager.pinned;

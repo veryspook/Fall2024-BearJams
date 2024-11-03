@@ -28,8 +28,8 @@ public class Furnace : MonoBehaviour
     }
     IEnumerator Timer() {
         while (currTime < maxTime) {
-            yield return new WaitForSeconds(0.1f);
-            currTime += 0.1f * customer.carcassWeight;
+            yield return new WaitForEndOfFrame();
+            currTime += Time.deltaTime * customer.carcassWeight;
             slider.value = currTime / maxTime;
         }
     }
