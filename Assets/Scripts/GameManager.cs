@@ -10,7 +10,9 @@ public class GameManager : MonoBehaviour
 
 	public enum Urns
 	{
-		Green, Blue, Black
+		Black = 0,
+		Green = 1,
+		Blue = 2
 	}
 	public enum Flowers
 	{

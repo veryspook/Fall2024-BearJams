@@ -4995,6 +4995,7 @@ MonoBehaviour:
   pourPoint: {fileID: 8810931994985937669}
   ashParticles: {fileID: 5180963790435779089}
   spillParticles: {fileID: 0}
+  spillSprite: {fileID: 0}
   startAngle: -55
   rotationSensitivity: 18
   movementSensitivity: 0.6
@@ -5225,6 +5226,30 @@ MonoBehaviour:
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.2804266
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spillSpriteOpacity:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 5
+      outSlope: 5
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.2
+      value: 1
+      inSlope: 5
+      outSlope: 5
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

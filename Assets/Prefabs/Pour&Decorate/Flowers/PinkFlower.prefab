@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5228183594710510166}
   - component: {fileID: 9054990518161094128}
+  - component: {fileID: -357312765214315730}
   m_Layer: 0
   m_Name: PinkFlower
   m_TagString: Untagged
@@ -84,3 +85,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-357312765214315730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7087550008637152654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8a447763b0c0fb4fa5c40b5690471ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1

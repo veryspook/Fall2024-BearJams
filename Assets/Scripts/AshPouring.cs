@@ -9,6 +9,7 @@ public class AshPouring : MonoBehaviour
 	[SerializeField] private Transform pourPoint;
 	[SerializeField] private ParticleSystem ashParticles;
 	[SerializeField] public ParticleSystem spillParticles;
+	[SerializeField] private SpriteRenderer spillSprite;
 
 	private bool dragging;
 	private Vector2 dragStartPosition;
@@ -38,6 +39,7 @@ public class AshPouring : MonoBehaviour
 	[SerializeField] private AnimationCurve pourParticleAngleForSpeed;
 	[SerializeField] private AnimationCurve pourLifetimeForAngle;
 	[SerializeField] private AnimationCurve spillParticleForAmount;
+	[SerializeField] private AnimationCurve spillSpriteOpacity;
 
 
 	private void Start()
@@ -102,6 +104,8 @@ public class AshPouring : MonoBehaviour
 
 		if (spillAmount > 0.01)
 			amountSpilled += spillAmount * Time.deltaTime;
+
+		spillSprite.color = new Color(1, 1, 1, spillSpriteOpacity.Evaluate(amountSpilled));
 
 		if (spillParticles)
 		{

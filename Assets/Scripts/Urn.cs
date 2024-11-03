@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Urn : MonoBehaviour
 {
-    // don't ask
     public float funnelWidth;
     public Animator animator;
 	public ParticleSystem spillParticles;
+	public List<Transform> targetPoints;
+	public List<GameObject> decorations;
 
 	private void Awake()
 	{

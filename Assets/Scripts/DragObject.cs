@@ -40,7 +40,7 @@ public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     {
         if (canDrag == true) {
             canDrag = false;
-            _decoManager.decoTransforms.Add(transform);
+            // _decoManager.decoTransforms.Add(transform);
             _manager.UnregisterDraggedObject(this);
         }
     }

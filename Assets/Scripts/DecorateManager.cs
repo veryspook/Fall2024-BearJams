@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class DecorateManager : MonoBehaviour
 {
-    public List<Transform> decoTransforms = new List<Transform>();
-    public List<Transform> goalTransforms = new List<Transform>();
     public List<GameObject> urns = new List<GameObject>();
     public List<Sprite> urnSprites = new List<Sprite>();
     public List<FlowerSource> flowerSources = new List<FlowerSource>();
@@ -17,6 +15,7 @@ public class DecorateManager : MonoBehaviour
     public Customer currentCustomer;
     public AshPouring ashBag;
     public int currentUrn;
+    public Urn urn;
     public Canvas selectUrnUI;
     public Image selectUrnImage;
 
@@ -34,32 +33,46 @@ public class DecorateManager : MonoBehaviour
 			currentCustomer = c;
 			selectUrnImage.enabled = true;
 			ashBag.ashRemaining = currentCustomer.carcassWeight;
+            ashBag.amountSpilled = 0;
 			foreach (GameObject u in urns)
 			{
 				u.SetActive(false);
 			}
+            foreach (FlowerSource f in flowerSources)
+            {
+                f.draggable = false;
+            }
             return true;
         }
         else
             return false;
 	}
 
+    public void Finish(Customer c)
+    {
+        c.decorScore = GetScore(c);
+    }
+
     public IEnumerator EnterCoroutine()
     {
 		selectUrnUI.enabled = false;
-		Urn urn = urns[currentUrn].GetComponent<Urn>();
+		urn = urns[currentUrn].GetComponent<Urn>();
 		urn.gameObject.SetActive(true);
 		urn.animator.SetBool("Open", true);
         foreach (FlowerSource fs in flowerSources)
             fs.urn = urn;
 		ashBag.funnelWidth = urn.funnelWidth;
 		ashBag.spillParticles = urn.spillParticles;
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(0.1f);
 		ashBag.gameObject.SetActive(true);
 		yield return new WaitUntil(() => ashBag.ashRemaining <= 0);
         urn.animator.SetBool("Open", false);
         yield return new WaitForSeconds(0.3f);
         ashBag.gameObject.SetActive(false);
+        foreach (FlowerSource fs in flowerSources)
+        {
+            fs.draggable = true;
+        }
 	}
 
     public void NextUrnSelect()
@@ -83,31 +96,56 @@ public class DecorateManager : MonoBehaviour
 		StartCoroutine(EnterCoroutine());
     }
 
-	public void CheckAccuracy() {
-        List<Transform> goals = goalTransforms;
-        float totalAccuracy = 0f;
+    public float GetScore(Customer c)
+    {
+        if (c != currentCustomer)
+            return 0;
+        float finalScore = 0;
+        if ((GameManager.Urns) currentUrn == c.desiredUrn)
+        {
+            finalScore += 0.2f;
+        }
+        finalScore += 0.4f * Mathf.Clamp01(1 - ashBag.amountSpilled * 4 / c.carcassWeight);
+        finalScore += 0.4f * CheckAccuracy(c);
+        return Mathf.Clamp01(finalScore);
+    }
 
-        for (int i = 0; i < decoTransforms.Count; i++) {
-            if (goals.Count == 1) {
-                totalAccuracy = Mathf.Abs(Mathf.Abs(goals[0].position.x) - Mathf.Abs(decoTransforms[i].position.x)) + Mathf.Abs(Mathf.Abs(goals[0].position.y) - Mathf.Abs(decoTransforms[i].position.y));
-                //penalty for additional items
-                totalAccuracy += 200f * (decoTransforms.Count - i - 1);
-                Debug.Log(totalAccuracy);
-                break;
-            }
-            float min = Mathf.Abs(Mathf.Abs(goals[0].position.x) - Mathf.Abs(decoTransforms[i].position.x)) + Mathf.Abs(Mathf.Abs(goals[0].position.y) - Mathf.Abs(decoTransforms[i].position.y)); 
+    public float CheckAccuracy(Customer c)
+    {
+        List<Transform> goals = urn.targetPoints;
+        float totalAccuracy = 0f;
+        float extraItems = urn.decorations.Count - goals.Count;
+
+        foreach (GameObject deco in urn.decorations)
+        {
+            Transform decoTransform = deco.transform;
+            float min = Mathf.Abs(Mathf.Abs(goals[0].position.x) - Mathf.Abs(decoTransform.position.x)) + Mathf.Abs(Mathf.Abs(goals[0].position.y) - Mathf.Abs(decoTransform.position.y));
             Transform best = goals[0];
-            for (int j = 1; j < goals.Count; j++){
-                float accuracy = Mathf.Abs(Mathf.Abs(goals[j].position.x) - Mathf.Abs(decoTransforms[i].position.x)) + Mathf.Abs(Mathf.Abs(goals[j].position.y) - Mathf.Abs(decoTransforms[i].position.y));
-                if (accuracy < min) {
+            int bestI = 0;
+            for (int i = 0; i < goals.Count; i++)
+            {
+                float accuracy = Mathf.Abs(Mathf.Abs(goals[i].position.x) - Mathf.Abs(decoTransform.position.x)) + Mathf.Abs(Mathf.Abs(goals[i].position.y) - Mathf.Abs(decoTransform.position.y));
+                if (accuracy < min)
+                {
                     min = accuracy;
-                    best = goals[j];
+                    best = goals[i];
+                    bestI = i;
                 }
             }
-            
+
+            if (deco.GetComponent<Decoration>().type != c.desiredFlowers[bestI])
+                totalAccuracy += 3;
             totalAccuracy += min;
             goals.Remove(best);
         }
-        Debug.Log(totalAccuracy);
+        float finalScore = Mathf.Min(0, 10 - totalAccuracy);
+        if (extraItems < 0)
+        {
+            finalScore *= urn.decorations.Count / 3;
+        } else if (extraItems > 0)
+        {
+            finalScore *= 3 / urn.decorations.Count;
+		}
+        return finalScore;
     }
 }

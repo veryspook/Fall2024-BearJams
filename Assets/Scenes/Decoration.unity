@@ -270,11 +270,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0906e532714674ccaa9433270b34f2c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decoTransforms: []
-  goalTransforms:
-  - {fileID: 932539806}
-  - {fileID: 141578433}
-  - {fileID: 18428132}
   urns: []
   urnSprites: []
   flowerSources: []
