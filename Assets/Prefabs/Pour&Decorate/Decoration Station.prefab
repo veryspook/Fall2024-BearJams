@@ -1145,9 +1145,9 @@ MonoBehaviour:
   - {fileID: 7142392561606636163}
   - {fileID: 195914043319883156}
   urnSprites:
-  - {fileID: -1086474213, guid: 2630343a90ea3154e98006126612c4e3, type: 3}
-  - {fileID: -1983116668, guid: fb0c1b02ce7d4384b889df772f223fa7, type: 3}
-  - {fileID: -1844738488, guid: 2ba2bac486b48b5438194672df387234, type: 3}
+  - {fileID: 21300000, guid: 10935f2b525da4346b1f53bb543ac32c, type: 3}
+  - {fileID: 21300000, guid: 94e55706f6f93f14fb2ef1b86e0f4409, type: 3}
+  - {fileID: 21300000, guid: b11d05ae325d06f4ea23a2dcab44606a, type: 3}
   flowerSources:
   - {fileID: 651547263006003256}
   - {fileID: 7395661594139160565}
@@ -1156,6 +1156,7 @@ MonoBehaviour:
   decorations: {fileID: 0}
   ashBag: {fileID: 4245122718545448640}
   currentUrn: 0
+  urn: {fileID: 0}
   selectUrnUI: {fileID: 495810827969107389}
   selectUrnImage: {fileID: 1069754886656931223}
 --- !u!1 &5193104637346380087
