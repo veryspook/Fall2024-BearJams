@@ -277,6 +277,8 @@ MonoBehaviour:
   - {fileID: 18428132}
   urns: []
   urnSprites: []
+  flowerSources: []
+  decorations: {fileID: 0}
   ashBag: {fileID: 0}
   currentUrn: 0
   selectUrnUI: {fileID: 0}

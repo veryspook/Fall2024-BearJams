@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 879536723226623438}
   - component: {fileID: 2696929140982205557}
   - component: {fileID: 3151389312133591653}
+  - component: {fileID: 2853521216286289137}
   m_Layer: 0
   m_Name: GreenUrn
   m_TagString: Untagged
@@ -139,6 +140,105 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!60 &2853521216286289137
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448607340244790941}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4.428571, y: 5.8357143}
+    newSize: {x: 4.96, y: 6.536}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.45, y: -2.5821428}
+      - {x: 1.5, y: -2.475}
+      - {x: 1.35, y: -2.1107142}
+      - {x: 1.4428571, y: -1.9607143}
+      - {x: 1.5857143, y: -1.7107143}
+      - {x: 1.8, y: -1.1821429}
+      - {x: 1.9642857, y: -0.6464286}
+      - {x: 2.1357143, y: 0.10357143}
+      - {x: 2.1928573, y: 0.5535714}
+      - {x: 2.2142856, y: 0.86785716}
+      - {x: 2.2142856, y: 1.3678571}
+      - {x: 2.1785715, y: 1.6535715}
+      - {x: 2.0857143, y: 1.8464286}
+      - {x: 1.9714286, y: 1.9464285}
+      - {x: 1.35, y: 2.225}
+      - {x: 1.3142858, y: 2.4678571}
+      - {x: 1.4, y: 2.5678573}
+      - {x: 1.4714286, y: 2.767857}
+      - {x: 1.4428571, y: 2.8392856}
+      - {x: 1.2571429, y: 2.875}
+      - {x: 0.7, y: 2.9178572}
+      - {x: -0.5642857, y: 2.9178572}
+      - {x: -0.80714285, y: 2.9035714}
+      - {x: -1.2571429, y: 2.875}
+      - {x: -1.45, y: 2.8392856}
+      - {x: -1.4857143, y: 2.767857}
+      - {x: -1.3785714, y: 2.5107143}
+      - {x: -1.3142858, y: 2.4678571}
+      - {x: -1.4142858, y: 2.1964285}
+      - {x: -1.9428571, y: 1.9678571}
+      - {x: -2.0142858, y: 1.9107143}
+      - {x: -2.0857143, y: 1.8464286}
+      - {x: -2.1714287, y: 1.6535715}
+      - {x: -2.1857142, y: 1.5535715}
+      - {x: -2.2, y: 1.4607143}
+      - {x: -2.2142856, y: 1.3535714}
+      - {x: -2.2142856, y: 0.7892857}
+      - {x: -2.1571429, y: 0.28214285}
+      - {x: -2.0857143, y: -0.125}
+      - {x: -1.9571428, y: -0.63928574}
+      - {x: -1.8714286, y: -0.9678571}
+      - {x: -1.7428571, y: -1.3392857}
+      - {x: -1.5857143, y: -1.7107143}
+      - {x: -1.3571428, y: -2.1321428}
+      - {x: -1.5071429, y: -2.4964285}
+      - {x: -1.4357142, y: -2.6035714}
+      - {x: -1.1785715, y: -2.732143}
+      - {x: -0.80714285, y: -2.8321428}
+      - {x: -0.37142858, y: -2.9035714}
+      - {x: -0.25, y: -2.9178572}
+      - {x: 0.23571429, y: -2.9178572}
+      - {x: 0.47857144, y: -2.8892858}
+      - {x: 0.87142855, y: -2.825}
+      - {x: 1.2857143, y: -2.6892858}
+  m_UseDelaunayMesh: 0
 --- !u!1 &2396739926496447976
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,6 +371,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   funnelWidth: 2.9
+  animator: {fileID: 0}
+  spillParticles: {fileID: 0}
 --- !u!199 &5774993753986683613
 ParticleSystemRenderer:
   serializedVersion: 6

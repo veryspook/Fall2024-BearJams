@@ -11,6 +11,7 @@ public class DecorateManager : MonoBehaviour
     public List<Transform> goalTransforms = new List<Transform>();
     public List<GameObject> urns = new List<GameObject>();
     public List<Sprite> urnSprites = new List<Sprite>();
+    public List<FlowerSource> flowerSources = new List<FlowerSource>();
     public GameObject decorations;
 
     public Customer currentCustomer;
@@ -49,6 +50,8 @@ public class DecorateManager : MonoBehaviour
 		Urn urn = urns[currentUrn].GetComponent<Urn>();
 		urn.gameObject.SetActive(true);
 		urn.animator.SetBool("Open", true);
+        foreach (FlowerSource fs in flowerSources)
+            fs.urn = urn;
 		ashBag.funnelWidth = urn.funnelWidth;
 		ashBag.spillParticles = urn.spillParticles;
         yield return new WaitForEndOfFrame();
