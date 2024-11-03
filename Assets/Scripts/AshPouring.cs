@@ -8,7 +8,7 @@ public class AshPouring : MonoBehaviour
 {
 	[SerializeField] private Transform pourPoint;
 	[SerializeField] private ParticleSystem ashParticles;
-	[SerializeField] private ParticleSystem spillParticles;
+	[SerializeField] public ParticleSystem spillParticles;
 
 	private bool dragging;
 	private Vector2 dragStartPosition;
@@ -25,7 +25,7 @@ public class AshPouring : MonoBehaviour
 	[SerializeField] public float ashRemaining = 0.8f;
 	[SerializeField] public float amountSpilled = 0f;
 	[Header("Ash Pouring")]
-	[SerializeField] private float funnelWidth = 0.9f;
+	[SerializeField] public float funnelWidth = 0.9f;
 	private Vector2 funnelBounds;
 	// DO NOT RENAME ANY OF THE ANIMATION CURVES OR I WILL EAT YOU
 	[SerializeField] private AnimationCurve thresholdAngleForNoAsh;
@@ -43,12 +43,20 @@ public class AshPouring : MonoBehaviour
 	private void Start()
 	{
 		pourPointStartPos = pourPoint.position;
+		UpdateBounds();
+	}
+
+	public void UpdateBounds()
+	{
 		funnelBounds = new Vector2(-funnelWidth / 2, funnelWidth / 2);
 	}
 
+	private bool firstFrameClickProtection;
 	private void OnEnable()
 	{
 		currentAngle = startAngle;
+		UpdateBounds();
+		firstFrameClickProtection = true;
 	}
 
 	// Update is called once per frame
@@ -56,10 +64,14 @@ public class AshPouring : MonoBehaviour
     {
 		if (Input.GetMouseButtonDown(0))
 		{
-			dragging = true;
-			dragStartPosition = GetMousePos();
-			dragStartAngle = currentAngle;
-			xPositionAtDragStart = pourPoint.position.x;
+			if (!firstFrameClickProtection)
+			{
+				dragging = true;
+				dragStartPosition = GetMousePos();
+				dragStartAngle = currentAngle;
+				xPositionAtDragStart = pourPoint.position.x;
+			} else
+				firstFrameClickProtection = false;
 		}
 		else if (Input.GetMouseButtonUp(0))
 		{

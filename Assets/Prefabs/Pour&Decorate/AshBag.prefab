@@ -4995,12 +4995,12 @@ MonoBehaviour:
   pourPoint: {fileID: 8810931994985937669}
   ashParticles: {fileID: 5180963790435779089}
   spillParticles: {fileID: 0}
-  startAngle: -45
+  startAngle: -55
   rotationSensitivity: 18
   movementSensitivity: 0.6
   currentAngle: 0
-  angleBounds: {x: -50, y: 90}
-  movementBounds: {x: -1.5, y: 0}
+  angleBounds: {x: -60, y: 90}
+  movementBounds: {x: -2, y: 0}
   ashRemaining: 0.8
   amountSpilled: 0
   funnelWidth: 1.8

@@ -20,7 +20,9 @@ public class DecorateManager : MonoBehaviour
 
 	private void Start()
 	{
-        Enter(new Customer());
+        Customer c = new Customer();
+        c.carcassWeight = 1;
+        Enter(c);
 	}
 
 	public bool Enter(Customer c)
@@ -30,6 +32,10 @@ public class DecorateManager : MonoBehaviour
             currentCustomer = c;
             selectUrnImage.enabled = true;
             ashBag.ashRemaining = currentCustomer.carcassWeight;
+            foreach (GameObject u in urns)
+            {
+                u.SetActive(false);
+            }
             return true;
         }
         else
@@ -55,6 +61,12 @@ public class DecorateManager : MonoBehaviour
     public void UrnSelect()
     {
         selectUrnUI.enabled = false;
+        Urn urn = urns[currentUrn].GetComponent<Urn>();
+		urn.gameObject.SetActive(true);
+        urn.animator.SetBool("Open", true);
+        ashBag.funnelWidth = urn.funnelWidth;
+        ashBag.spillParticles = urn.spillParticles;
+        ashBag.gameObject.SetActive(true);
     }
 
 	public void CheckAccuracy() {
