@@ -97,10 +97,11 @@ public class DragCorpse : MonoBehaviour
 		currentCustomer.layToRestScore = GetPercentCovered();
 		GameManager.instance.burn.GetComponent<IStation>().Enqueue(currentCustomer);
 		yield return new WaitForSeconds(1f);
-		coffinAnimator.SetTrigger("Exit");
 		manager.currentCustomer = null;
 		Destroy(gameObject, 1f);
 		GameManager.instance.ChangeStation(GameManager.instance.burn);
+		yield return new WaitForSeconds(0.15f);
+		coffinAnimator.SetTrigger("Exit");
 	}
 
 	private void ApplyForce(float strength)

@@ -47,8 +47,11 @@ public class GameManager : MonoBehaviour
 
 	private IEnumerator CustomerFlow()
 	{
-		frontDesk.GetComponent<IStation>().Enqueue(Customer.Generate());
-		yield return new WaitForSeconds(15);
+		while (true)
+		{
+			frontDesk.GetComponent<IStation>().Enqueue(Customer.Generate());
+			yield return new WaitForSeconds(20);
+		}
 	}
 
 	private GameObject nextStation;
