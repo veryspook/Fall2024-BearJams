@@ -155,27 +155,35 @@ public class DecorateManager : MonoBehaviour, IStation
         float totalAccuracy = 0f;
         float extraItems = urn.decorations.Count - goals.Count;
 
+        if (urn.decorations.Count == 0)
+        {
+            return 0;
+        }
+
         foreach (GameObject deco in urn.decorations)
         {
-            Transform decoTransform = deco.transform;
-            float min = Mathf.Abs(Mathf.Abs(goals[0].position.x) - Mathf.Abs(decoTransform.position.x)) + Mathf.Abs(Mathf.Abs(goals[0].position.y) - Mathf.Abs(decoTransform.position.y));
-            Transform best = goals[0];
-            int bestI = 0;
-            for (int i = 0; i < goals.Count; i++)
+            if (deco)
             {
-                float accuracy = Mathf.Abs(Mathf.Abs(goals[i].position.x) - Mathf.Abs(decoTransform.position.x)) + Mathf.Abs(Mathf.Abs(goals[i].position.y) - Mathf.Abs(decoTransform.position.y));
-                if (accuracy < min)
+                Transform decoTransform = deco.transform;
+                float min = Mathf.Abs(Mathf.Abs(goals[0].position.x) - Mathf.Abs(decoTransform.position.x)) + Mathf.Abs(Mathf.Abs(goals[0].position.y) - Mathf.Abs(decoTransform.position.y));
+                Transform best = goals[0];
+                int bestI = 0;
+                for (int i = 0; i < goals.Count; i++)
                 {
-                    min = accuracy;
-                    best = goals[i];
-                    bestI = i;
+                    float accuracy = Mathf.Abs(Mathf.Abs(goals[i].position.x) - Mathf.Abs(decoTransform.position.x)) + Mathf.Abs(Mathf.Abs(goals[i].position.y) - Mathf.Abs(decoTransform.position.y));
+                    if (accuracy < min)
+                    {
+                        min = accuracy;
+                        best = goals[i];
+                        bestI = i;
+                    }
                 }
-            }
 
-            if (deco.GetComponent<Decoration>().type != c.desiredFlowers[bestI])
-                totalAccuracy += 3;
-            totalAccuracy += min;
-            goals.Remove(best);
+                if (deco.GetComponent<Decoration>().type != c.desiredFlowers[bestI])
+                    totalAccuracy += 3;
+                totalAccuracy += min;
+                goals.Remove(best);
+            }
         }
         float finalScore = Mathf.Clamp01((5 - (totalAccuracy / 2)) / 5);
         if (extraItems < 0)
