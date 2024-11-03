@@ -22,7 +22,7 @@ public class LifeManager : MonoBehaviour
             lifeIcons[lives - 1].sprite = lostLife;
             lives -= 1;
             if (lives <= 0) {
-                //trigger gameover
+                GameManager.instance.GameOver();
             }
         }
     }

@@ -58,8 +58,10 @@ public class DecorateManager : MonoBehaviour, IStation
             Customer c = om.pinned.customer;
             Debug.Log(c);
             c.decorScore = GetScore(c);
+            urn.HideTargets();
+            urn.animator.ResetTrigger("Enter");
+			urn.animator.SetTrigger("Finish");
             c.pourScore = Mathf.Clamp01(1 - ashBag.amountSpilled * 4 / c.carcassWeight);
-            urn.gameObject.SetActive(false);
             submitButton.enabled = false;
             Destroy(om.pinned.gameObject);
             om.pinned = null;
@@ -68,7 +70,7 @@ public class DecorateManager : MonoBehaviour, IStation
             {
                 lifeManager.LoseLife();
             }
-            GameManager.instance.score += sum;
+            GameManager.instance.score += Mathf.Ceil(sum * 100);
             resultsManager.DisplayResults(c);
             currentCustomer = null;
         }
@@ -84,9 +86,9 @@ public class DecorateManager : MonoBehaviour, IStation
 		selectUrnUI.enabled = false;
 		urn = urns[currentUrn].GetComponent<Urn>();
         urn.HideTargets();
-        foreach (GameObject d in urn.decorations)
-            Destroy(d);
+        DestroyDecorations();
 		urn.gameObject.SetActive(true);
+        urn.animator.SetTrigger("Enter");
 		urn.animator.SetBool("Open", true);
         foreach (FlowerSource fs in flowerSources)
             fs.urn = urn;
@@ -102,6 +104,15 @@ public class DecorateManager : MonoBehaviour, IStation
         submitButton.enabled = true;
         foreach (FlowerSource fs in flowerSources)
             fs.draggable = true;
+	}
+
+    private void DestroyDecorations()
+    {
+		foreach (GameObject d in urn.decorations)
+        {
+			Destroy(d);
+		}
+        decorations.Clear();
 	}
 
     public void NextUrnSelect()
