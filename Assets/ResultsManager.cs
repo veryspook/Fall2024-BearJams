@@ -19,7 +19,6 @@ public class ResultsManager : MonoBehaviour
         cookScore.text = c.cookScore.ToString("0%");
         pourScore.text = c.pourScore.ToString("0%");
         decorScore.text = c.decorScore.ToString("0%");
-        anim.SetTrigger("Show");
     }
 
     public void Test() {
@@ -30,10 +29,7 @@ public class ResultsManager : MonoBehaviour
         c.pourScore = 0.4f;
         c.decorScore = 1f;
         customerToDisplay = c;
-
         gameObject.SetActive(true);
-
-
     }
 
 }
