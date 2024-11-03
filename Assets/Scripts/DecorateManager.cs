@@ -22,6 +22,7 @@ public class DecorateManager : MonoBehaviour, IStation
     public Image selectUrnImage;
     public Canvas submitButton;
     public ResultsManager resultsManager;
+    public LifeManager lifeManager;
 
 
 	public void Enter()
@@ -64,6 +65,12 @@ public class DecorateManager : MonoBehaviour, IStation
             submitButton.enabled = false;
             Destroy(om.pinned.gameObject);
             om.pinned = null;
+            float sum = c.layToRestScore + c.cookScore + c.pourScore + c.decorScore;
+            if (sum / 4 < 0.5)
+            {
+                lifeManager.LoseLife();
+            }
+            GameManager.instance.score += sum;
             resultsManager.DisplayResults(c);
         }
 	}

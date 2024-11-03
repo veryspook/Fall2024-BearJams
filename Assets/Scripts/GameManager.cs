@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
 	public Image newCustomerClock;
 	public LifeManager lifeManager;
 	public ResultsManager resultsManager;
+	public Canvas gameOver;
+	public TextMeshProUGUI gameOverScoreText;
+	public TextMeshProUGUI gameOverCustomersText;
 
 	private float nextCustomerTime;
 	private float customerCooldown = 30;
@@ -78,6 +81,14 @@ public class GameManager : MonoBehaviour
 
 			yield return new WaitUntil(() => nextCustomerTime <= 0);
 		}
+	}
+
+	public void GameOver()
+	{
+		currentStation.SetActive(false);
+		gameOver.enabled = true;
+		gameOverScoreText.text = "Final Score: <color=red>" + score;
+		gameOverCustomersText.text = "Orders Completed: <color=red>" + orderManager.orderNum;
 	}
 
 	private GameObject nextStation;

@@ -307,6 +307,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: add1a9b43fa1f9d488a9039479948c2f, type: 3}
+--- !u!114 &944679642 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5350616761446804018, guid: eeb4aeb548eebea43bbf44cece96f19f, type: 3}
+  m_PrefabInstance: {fileID: 1695643286}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52d80d8da8bf458ea05c68ed5d4a26a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &983840122 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5608024483947567059, guid: add1a9b43fa1f9d488a9039479948c2f, type: 3}
@@ -598,6 +609,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3830593179258959317, guid: 523418aab3631e44298903528527e83d, type: 3}
+      propertyPath: lifeManager
+      value: 
+      objectReference: {fileID: 944679642}
     - target: {fileID: 3830593179258959317, guid: 523418aab3631e44298903528527e83d, type: 3}
       propertyPath: resultsManager
       value: 
