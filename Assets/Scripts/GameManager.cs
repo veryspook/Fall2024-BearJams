@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 	{
 		Blue, Pink, Red, Orange
 	}
+	public Sprite[] flowerSprites;
 
 	private void Awake()
 	{

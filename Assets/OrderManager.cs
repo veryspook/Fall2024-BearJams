@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OrderManager : DragManager
+public class OrderManager : MonoBehaviour
 {
     public List<Order> orders = new List<Order>();
     public Sprite[] weightIcons = new Sprite[3];
@@ -18,16 +18,12 @@ public class OrderManager : DragManager
     public int orderNum = 1;
     public GameObject orderPrefab;
 
-        // Start is called before the first frame update
-    void Start()
-    {
-        for (int i = 0; i < urnIcons.Count; i++) {
-            urnIconDict.Add(urns[i], urnIcons[i]);
-        }
-        for (int j = 0; j < flowerIcons.Count; j++) {
-            flowerIconDict.Add(flowers[j], flowerIcons[j]);
-        }
-    }
+    public float ticketRopeHeight = 352;
+    public float ticketRopeScale = 0.3f;
+    public float ticketFocusScale = 0.7f;
+    public Vector2 ticketPinPosition;
+    public RectTransform pinHitbox;
+    public Order pinned;
 
     // Update is called once per frame
     void Update()
@@ -35,33 +31,64 @@ public class OrderManager : DragManager
         
     }
 
-    public void TestOrder() {
-
-    }
-    public void AddOrder(Customer customer) {
-        GameObject orderObj = Instantiate(orderPrefab);
-        Order order = orderObj.GetComponent<Order>();
-        order.customer = customer;
+    public void AddOrder(Customer customer)
+    {
+		GameObject orderObj = Instantiate(orderPrefab);
+        orderObj.transform.parent = transform;
+		Order order = orderObj.GetComponent<Order>();
+        order.manager = this;
+		order.customer = customer;
 
         order.orderNum.text = orderNum.ToString("#0000");
         orderNum++;
 
-        if (0f <= customer.carcassWeight && customer.carcassWeight < 0.3f) {
+        if (0.5f <= customer.carcassWeight && customer.carcassWeight < 0.6f)
+        {
             order.weightClass.sprite = weightIcons[0];
-        } else if (0.3f <= customer.carcassWeight && customer.carcassWeight < 0.7f) {
+        }
+        else if (0.6f <= customer.carcassWeight && customer.carcassWeight < 0.8f)
+        {
             order.weightClass.sprite = weightIcons[1];
-        } else {
+        }
+        else
+        {
             order.weightClass.sprite = weightIcons[2];
         }
 
         order.urn.sprite = urnIconDict[customer.desiredUrn];
-        foreach (GameObject flower in order.flowerIcons) {
-            flower.SetActive(false);
+        for (int i = 0; i < 3; i++)
+        {
+            order.flowerSprites[i].sprite = flowerIcons[(int) customer.desiredFlowers[i]];
         }
-        for (int i = 0; i < customer.desiredFlowers.Length; i++) {
-            order.flowerIcons[i].SetActive(true);
-            flowerIcons[i].GetComponent<Image>().sprite = flowerIconDict[customer.desiredFlowers[i]];
-        }
-        
     }
+
+	public void TestOrder() {
+        AddOrder(new Customer());
+    }
+    //public void AddOrder(Customer customer) {
+    //    GameObject orderObj = Instantiate(orderPrefab);
+    //    Order order = orderObj.GetComponent<Order>();
+    //    order.customer = customer;
+
+    //    order.orderNum.text = orderNum.ToString("#0000");
+    //    orderNum++;
+
+    //    if (0f <= customer.carcassWeight && customer.carcassWeight < 0.3f) {
+    //        order.weightClass.sprite = weightIcons[0];
+    //    } else if (0.3f <= customer.carcassWeight && customer.carcassWeight < 0.7f) {
+    //        order.weightClass.sprite = weightIcons[1];
+    //    } else {
+    //        order.weightClass.sprite = weightIcons[2];
+    //    }
+
+    //    order.urn.sprite = urnIconDict[customer.desiredUrn];
+    //    foreach (GameObject flower in order.flowerIcons) {
+    //        flower.SetActive(false);
+    //    }
+    //    for (int i = 0; i < customer.desiredFlowers.Length; i++) {
+    //        order.flowerIcons[i].SetActive(true);
+    //        flowerIcons[i].GetComponent<Image>().sprite = flowerIconDict[customer.desiredFlowers[i]];
+    //    }
+        
+    //}
 }
