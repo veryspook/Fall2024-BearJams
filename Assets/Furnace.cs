@@ -14,6 +14,8 @@ public class Furnace : MonoBehaviour
     [SerializeField] private Slider slider;
     private float currTime = 0f;
     [SerializeField] private GameObject fire;
+    public Animator coffinAnim;
+    public IEnumerator timer;
     public enum Status {
         Empty,
         Cooking
@@ -25,7 +27,7 @@ public class Furnace : MonoBehaviour
         
     }
     IEnumerator Timer() {
-        while (currTime < maxTime && customer != null) {
+        while (currTime < maxTime) {
             yield return new WaitForSeconds(0.1f);
             currTime += 0.1f * customer.carcassWeight;
             slider.value = currTime / maxTime;
@@ -43,8 +45,17 @@ public class Furnace : MonoBehaviour
             fire.SetActive(true);
         }
     }
+
+    public void PutInBody() {
+        coffinAnim.SetTrigger("Move");
+        timer = Timer();
+        StartCoroutine(timer);
+
+    }
     public void TakeOutBody() {
-        customer = null;
+        StopCoroutine(timer);
+        currTime = 0f;
+
         if (readyTime <= currTime && currTime <= burnTime) {
             customer.cookScore = 1;
         } else {
