@@ -73,6 +73,11 @@ public class DragCorpse : MonoBehaviour
 			}
 		}
 
+		if (GetPercentCovered() > 0.001)
+		{
+			Debug.Log(GetPercentCovered());
+		}
+
 		if (dragging != null)
 		{
 			// Move object, taking into account original offset.
@@ -90,6 +95,7 @@ public class DragCorpse : MonoBehaviour
 	{
 		coffinAnimator.SetTrigger("Finish");
 		currentCustomer.layToRestScore = GetPercentCovered();
+		Debug.Log(currentCustomer.layToRestScore);
 		GameManager.instance.burn.GetComponent<IStation>().Enqueue(currentCustomer);
 		yield return new WaitForSeconds(1f);
 		manager.currentCustomer = null;
@@ -153,6 +159,6 @@ public class DragCorpse : MonoBehaviour
 		Vector3 insideMax = c.ClosestPoint(b.max);
 		Vector3 diff = insideMax - insideMin;
 		float areaInside = diff.x * diff.y;
-		return areaInside / area;
+		return Mathf.Clamp01((areaInside / area) / 0.035f + 0.35f);
 	}
 }

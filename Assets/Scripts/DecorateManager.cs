@@ -27,8 +27,6 @@ public class DecorateManager : MonoBehaviour, IStation
 
 	public void Enter()
     {
-        Debug.Log(currentCustomer);
-        Debug.Log(customerQueue);
         if (currentCustomer == null && customerQueue.Count > 0)
         {
             submitButton.enabled = false;
@@ -72,13 +70,13 @@ public class DecorateManager : MonoBehaviour, IStation
             }
             GameManager.instance.score += sum;
             resultsManager.DisplayResults(c);
+            currentCustomer = null;
         }
 	}
 
 	public void Enqueue(Customer customer)
 	{
 		customerQueue.Add(customer);
-        Debug.Log(customer.ToString());
 	}
 
 	public IEnumerator EnterCoroutine()
@@ -168,7 +166,7 @@ public class DecorateManager : MonoBehaviour, IStation
             totalAccuracy += min;
             goals.Remove(best);
         }
-        float finalScore = Mathf.Clamp01((5 - totalAccuracy) / 5);
+        float finalScore = Mathf.Clamp01((5 - (totalAccuracy / 2)) / 5);
         if (extraItems < 0)
         {
             finalScore *= urn.decorations.Count / Customer.DECORATION_COUNT;

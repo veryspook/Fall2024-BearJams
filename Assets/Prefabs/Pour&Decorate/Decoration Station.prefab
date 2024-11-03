@@ -878,8 +878,8 @@ MonoBehaviour:
   - {fileID: 195914043319883156}
   urnSprites:
   - {fileID: 21300000, guid: 10935f2b525da4346b1f53bb543ac32c, type: 3}
-  - {fileID: 21300000, guid: 94e55706f6f93f14fb2ef1b86e0f4409, type: 3}
   - {fileID: 21300000, guid: b11d05ae325d06f4ea23a2dcab44606a, type: 3}
+  - {fileID: 21300000, guid: 94e55706f6f93f14fb2ef1b86e0f4409, type: 3}
   flowerSources:
   - {fileID: 651547263006003256}
   - {fileID: 7395661594139160565}
@@ -894,6 +894,7 @@ MonoBehaviour:
   selectUrnImage: {fileID: 1069754886656931223}
   submitButton: {fileID: 7756347192379631226}
   resultsManager: {fileID: 0}
+  lifeManager: {fileID: 0}
 --- !u!1 &5193104637346380087
 GameObject:
   m_ObjectHideFlags: 0
