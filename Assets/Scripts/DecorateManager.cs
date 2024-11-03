@@ -3,24 +3,55 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DecorateManager : MonoBehaviour
 {
     public List<Transform> decoTransforms = new List<Transform>();
     public List<Transform> goalTransforms = new List<Transform>();
+    public List<GameObject> urns = new List<GameObject>();
+    public List<Sprite> urnSprites = new List<Sprite>();
 
-    // Start is called before the first frame update
-    void Start()
+    public Customer currentCustomer;
+    public AshPouring ashBag;
+    public int currentUrn;
+    public Canvas selectUrnUI;
+    public Image selectUrnImage;
+
+    public bool Enter(Customer c)
     {
-        
+        if (currentCustomer == null)
+        {
+            currentCustomer = c;
+            selectUrnImage.enabled = true;
+            return true;
+        }
+        else
+            return false;
+	}
+
+    public void NextUrnSelect()
+    {
+        currentUrn += 1;
+        if (currentUrn >= urnSprites.Count)
+            currentUrn = 0;
+        selectUrnImage.sprite = urnSprites[currentUrn];
+    }
+    
+	public void PreviousUrnSelect()
+	{
+		currentUrn -= 1;
+		if (currentUrn < 0)
+			currentUrn = urnSprites.Count - 1;
+		selectUrnImage.sprite = urnSprites[currentUrn];
+	}
+
+    public void UrnSelect()
+    {
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public void CheckAccuracy(){
+	public void CheckAccuracy() {
         List<Transform> goals = goalTransforms;
         float totalAccuracy = 0f;
 

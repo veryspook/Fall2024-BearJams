@@ -22,8 +22,8 @@ public class AshPouring : MonoBehaviour
 	[SerializeField] private float currentAngle;
 	[SerializeField] private Vector2 angleBounds;
 	[SerializeField] private Vector2 movementBounds;
-	[SerializeField] private float ashRemaining = 0.8f;
-	[SerializeField] private float amountSpilled = 0f;
+	[SerializeField] public float ashRemaining = 0.8f;
+	[SerializeField] public float amountSpilled = 0f;
 	[Header("Ash Pouring")]
 	[SerializeField] private float funnelWidth = 0.9f;
 	private Vector2 funnelBounds;
