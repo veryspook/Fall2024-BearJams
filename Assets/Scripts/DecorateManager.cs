@@ -23,23 +23,26 @@ public class DecorateManager : MonoBehaviour, IStation
 
 	public void Enter()
     {
-        Customer customer = customerQueue[0];
-		customerQueue.RemoveAt(0);
-		currentCustomer = customer;
-		currentCustomer = customerQueue[0];
-        customerQueue.RemoveAt(0);
+        if (customerQueue.Count > 0)
+        {
+            Customer customer = customerQueue[0];
+            customerQueue.RemoveAt(0);
+            currentCustomer = customer;
+            currentCustomer = customerQueue[0];
+            customerQueue.RemoveAt(0);
 
-		selectUrnImage.enabled = true;
-		ashBag.ashRemaining = currentCustomer.carcassWeight;
-		ashBag.amountSpilled = 0;
-		foreach (GameObject u in urns)
-		{
-			u.SetActive(false);
-		}
-		foreach (FlowerSource f in flowerSources)
-		{
-			f.draggable = false;
-		}
+            selectUrnImage.enabled = true;
+            ashBag.ashRemaining = currentCustomer.carcassWeight;
+            ashBag.amountSpilled = 0;
+            foreach (GameObject u in urns)
+            {
+                u.SetActive(false);
+            }
+            foreach (FlowerSource f in flowerSources)
+            {
+                f.draggable = false;
+            }
+        }
 	}
 
     public void Finish(Customer c)

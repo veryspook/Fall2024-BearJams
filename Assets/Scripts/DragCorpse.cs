@@ -1,8 +1,10 @@
+using System.Collections;
 using UnityEngine;
 
 public class DragCorpse : MonoBehaviour
 {
 	private Transform dragging = null;
+	private Customer currentCustomer;
 	private Vector3 offset;
 	[SerializeField] private float dragSpeed = 10;
 	[SerializeField] private float scrambleStrength;
@@ -11,11 +13,13 @@ public class DragCorpse : MonoBehaviour
 	public Vector2 startPos;
 	public Animator coffinAnimator;
 
-	Rigidbody2D[] rbList;
+	[SerializeField] private Rigidbody2D[] rbList;
 
 	private void Awake()
 	{
-		rbList = GetComponentsInChildren<Rigidbody2D>();
+		coffin = transform.parent.GetComponent<Collider2D>();
+		coffinAnimator = transform.parent.GetComponent<Animator>();
+		coffin.GetComponent<Coffin>().corpse = this;
 	}
 
 	private void Start()
@@ -26,6 +30,7 @@ public class DragCorpse : MonoBehaviour
 	public void Enter(Customer customer)
 	{
 		ApplyForce(scrambleStrength);
+		currentCustomer = customer;
 		foreach (Rigidbody2D rb in rbList)
 		{
 			Collider2D[] cs = new Collider2D[rb.attachedColliderCount];
@@ -61,7 +66,7 @@ public class DragCorpse : MonoBehaviour
 				foreach (Collider2D c in cs)
 				{
 					if (coffin.bounds.Intersects(c.bounds)) {
-						coffinAnimator.SetTrigger("Finish");
+						StartCoroutine(FinishCoroutine());
 					}
 				}
 			}
@@ -78,7 +83,16 @@ public class DragCorpse : MonoBehaviour
 			}
 		}
 
-		Debug.Log(GetPercentCovered());
+	}
+
+	private IEnumerator FinishCoroutine()
+	{
+		coffinAnimator.SetTrigger("Finish");
+		currentCustomer.layToRestScore = GetPercentCovered();
+		GameManager.instance.burn.GetComponent<IStation>().Enqueue(currentCustomer);
+		yield return new WaitForSeconds(1f);
+		Destroy(gameObject, 0.5f);
+		GameManager.instance.ChangeStation(GameManager.instance.burn);
 	}
 
 	private void ApplyForce(float strength)

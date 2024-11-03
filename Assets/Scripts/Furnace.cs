@@ -12,15 +12,13 @@ public class Furnace : MonoBehaviour
     [SerializeField]
     private float burnTime = 23f;
     [SerializeField] private Slider slider;
+    [SerializeField] private Button insertButton;
     private float currTime = 0f;
     [SerializeField] private GameObject fire;
     public Animator coffinAnim;
-    public IEnumerator timer;
-    public enum Status {
-        Empty,
-        Cooking
-    }
-    public Status status = Status.Empty;
+    public Animator trayAnim;
+    public Coroutine timer;
+    public bool cooking = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +27,7 @@ public class Furnace : MonoBehaviour
     IEnumerator Timer() {
         while (currTime < maxTime) {
             yield return new WaitForEndOfFrame();
-            currTime += Time.deltaTime * customer.carcassWeight;
+            currTime += Time.deltaTime * (1 / customer.carcassWeight);
             slider.value = currTime / maxTime;
         }
     }
@@ -38,25 +36,41 @@ public class Furnace : MonoBehaviour
     void Update()
     {
         if (customer == null) {
-            status = Status.Empty;
+            cooking = false;
             fire.SetActive(false);
         } else {
-            status = Status.Cooking;
+            cooking = true;
             fire.SetActive(true);
         }
     }
 
-    public void PutInBody() {
-        coffinAnim.SetTrigger("Move");
-        timer = Timer();
-        StartCoroutine(timer);
-
+    public void SetBody(Customer c)
+    {
+        coffinAnim.SetTrigger("Enter");
+        slider.enabled = false;
+        insertButton.enabled = true;
+        customer = c;
     }
-    public void TakeOutBody() {
-        StopCoroutine(timer);
-        currTime = 0f;
 
-        if (readyTime <= currTime && currTime <= burnTime) {
+    public void PutInBody() {
+        coffinAnim.SetTrigger("Insert");
+        fire.SetActive(true);
+        slider.enabled = true;
+        insertButton.enabled = false;
+        timer = StartCoroutine(Timer());
+    }
+
+    public void TakeOutBody() {
+        coffinAnim.SetTrigger("Remove");
+        trayAnim.SetTrigger("Remove");
+        fire.SetActive(false);
+        StopCoroutine(timer);
+        cooking = false;
+
+		slider.enabled = false;
+		insertButton.enabled = false;
+
+		if (readyTime <= currTime && currTime <= burnTime) {
             customer.cookScore = 1;
         } else {
             if (readyTime - currTime > 0) {
@@ -65,5 +79,7 @@ public class Furnace : MonoBehaviour
                 customer.cookScore = 1 - (currTime - burnTime)/currTime;
             }
         }
-    }
+		currTime = 0f;
+
+	}
 }

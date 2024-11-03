@@ -57,6 +57,7 @@ public class FrontDesk : MonoBehaviour, IStation
 			yield return new WaitForSeconds(0.9f);
 		}
 		GameManager.instance.orderManager.AddOrder(currentCustomer);
+		GameManager.instance.layToRest.GetComponent<IStation>().Enqueue(currentCustomer);
 		yield return new WaitForSeconds(0.3f);
 		GameManager.instance.ChangeStation(GameManager.instance.layToRest);
 	}

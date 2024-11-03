@@ -171,13 +171,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6101417126463894271, guid: 743dbd0e0011900488e6b96c5b35910b, type: 3}
+      propertyPath: corpse
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7010126317416605054, guid: 743dbd0e0011900488e6b96c5b35910b, type: 3}
       propertyPath: m_Name
       value: LayToRest
-      objectReference: {fileID: 0}
-    - target: {fileID: 7010126317416605054, guid: 743dbd0e0011900488e6b96c5b35910b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -192,18 +192,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2276977031490108950, guid: e34a004ab26f1b949b0add0871c0c659, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3044602575670974021, guid: e34a004ab26f1b949b0add0871c0c659, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7735139641658007242, guid: e34a004ab26f1b949b0add0871c0c659, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7923638756767683265, guid: e34a004ab26f1b949b0add0871c0c659, type: 3}
       propertyPath: m_LocalPosition.x
       value: 576
@@ -247,10 +235,6 @@ PrefabInstance:
     - target: {fileID: 8559742307494781742, guid: e34a004ab26f1b949b0add0871c0c659, type: 3}
       propertyPath: m_Name
       value: BurnStation
-      objectReference: {fileID: 0}
-    - target: {fileID: 8559742307494781742, guid: e34a004ab26f1b949b0add0871c0c659, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -313,6 +297,10 @@ PrefabInstance:
     - target: {fileID: 5608024483947567059, guid: add1a9b43fa1f9d488a9039479948c2f, type: 3}
       propertyPath: m_Name
       value: FrontDesk
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608024483947567059, guid: add1a9b43fa1f9d488a9039479948c2f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -594,10 +582,6 @@ PrefabInstance:
     - target: {fileID: 3556232782608761919, guid: 523418aab3631e44298903528527e83d, type: 3}
       propertyPath: m_Name
       value: Decoration Station
-      objectReference: {fileID: 0}
-    - target: {fileID: 3556232782608761919, guid: 523418aab3631e44298903528527e83d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5180471272628734102, guid: 523418aab3631e44298903528527e83d, type: 3}
       propertyPath: m_LocalPosition.x

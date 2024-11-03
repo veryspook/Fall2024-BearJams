@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
 	public void ChangeStation(GameObject station)
 	{
 		nextStation = station;
+		station.GetComponent<IStation>().Enter();
 		animator.SetTrigger("Fade");
 	}
 	
