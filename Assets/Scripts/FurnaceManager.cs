@@ -21,7 +21,6 @@ public class FurnaceManager : MonoBehaviour, IStation
 		{
 			if (!furnace.cooking && customerQueue.Count > 0)
 			{
-				Debug.Log(customerQueue.Count);
 				furnace.SetBody(customerQueue[0]);
 				customerQueue.RemoveAt(0);
 				if (customerQueue.Count <= 0)

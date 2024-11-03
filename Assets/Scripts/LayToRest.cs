@@ -25,6 +25,7 @@ public class LayToRest : MonoBehaviour, IStation
 			currentCustomer = customerQueue[0];
 			DragCorpse corpse = Instantiate(corpsePrefab, (Vector3) startPosition, Quaternion.identity, coffin.transform).GetComponent<DragCorpse>();
 			coffin.SetActive(true);
+			corpse.manager = this;
 			corpse.Enter(currentCustomer);
 			customerQueue.RemoveAt(0);
 		}

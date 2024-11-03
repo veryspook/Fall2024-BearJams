@@ -94,7 +94,7 @@ public class Furnace : MonoBehaviour
             }
         }
 		currTime = 0f;
-        customer = null;
         GameManager.instance.adorn.GetComponent<IStation>().Enqueue(customer);
+        customer = null;
 	}
 }

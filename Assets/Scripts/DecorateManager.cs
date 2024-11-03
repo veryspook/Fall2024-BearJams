@@ -23,15 +23,11 @@ public class DecorateManager : MonoBehaviour, IStation
 
 	public void Enter()
     {
-        if (customerQueue.Count > 0)
+        if (currentCustomer == null && customerQueue.Count > 0)
         {
-            Customer customer = customerQueue[0];
-            customerQueue.RemoveAt(0);
-            currentCustomer = customer;
             currentCustomer = customerQueue[0];
             customerQueue.RemoveAt(0);
-
-            selectUrnImage.enabled = true;
+            selectUrnUI.enabled = true;
             ashBag.ashRemaining = currentCustomer.carcassWeight;
             ashBag.amountSpilled = 0;
             foreach (GameObject u in urns)

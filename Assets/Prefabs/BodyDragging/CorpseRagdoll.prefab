@@ -1272,13 +1272,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragSpeed: 7.5
-  scrambleStrength: 25
+  scrambleStrength: 15
   movableLayers:
     serializedVersion: 2
     m_Bits: 16384
   coffin: {fileID: 0}
   startPos: {x: 0, y: 0}
   coffinAnimator: {fileID: 0}
+  manager: {fileID: 0}
   rbList:
   - {fileID: 6063348193016958620}
   - {fileID: 5011734470499390532}

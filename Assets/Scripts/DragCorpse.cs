@@ -12,6 +12,7 @@ public class DragCorpse : MonoBehaviour
 	public Collider2D coffin;
 	public Vector2 startPos;
 	public Animator coffinAnimator;
+	public LayToRest manager;
 
 	private bool locked = false;
 
@@ -96,7 +97,8 @@ public class DragCorpse : MonoBehaviour
 		coffinAnimator.SetTrigger("Finish");
 		currentCustomer.layToRestScore = GetPercentCovered();
 		GameManager.instance.burn.GetComponent<IStation>().Enqueue(currentCustomer);
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(2f);
+		manager.currentCustomer = null;
 		Destroy(gameObject, 1f);
 		GameManager.instance.ChangeStation(GameManager.instance.burn);
 	}

@@ -42,6 +42,13 @@ public class GameManager : MonoBehaviour
 
 		animator = GetComponent<Animator>();
 		orderManager = GetComponent<OrderManager>();
+		StartCoroutine(CustomerFlow());
+	}
+
+	private IEnumerator CustomerFlow()
+	{
+		frontDesk.GetComponent<IStation>().Enqueue(Customer.Generate());
+		yield return new WaitForSeconds(15);
 	}
 
 	private GameObject nextStation;

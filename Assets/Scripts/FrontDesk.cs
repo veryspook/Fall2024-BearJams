@@ -44,6 +44,7 @@ public class FrontDesk : MonoBehaviour, IStation
 		startOrderUI.gameObject.SetActive(false);
 		animator.gameObject.SetActive(true);
 		animator.SetTrigger("Walk");
+		GameManager.instance.HideBottomBar();
 		currentCustomer = customerQueue[0];
 		customerQueue.RemoveAt(0);
 		yield return new WaitForSeconds(1.5f);
@@ -66,6 +67,7 @@ public class FrontDesk : MonoBehaviour, IStation
 		GameManager.instance.orderManager.AddOrder(currentCustomer);
 		GameManager.instance.layToRest.GetComponent<IStation>().Enqueue(currentCustomer);
 		yield return new WaitForSeconds(0.3f);
+		GameManager.instance.ShowBottomBar();
 		animator.SetTrigger("Exit");
 		GameManager.instance.ChangeStation(GameManager.instance.layToRest);
 	}
