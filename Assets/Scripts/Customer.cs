@@ -5,6 +5,7 @@ using UnityEngine;
 public class Customer
 {
     public GameManager.Urns desiredUrn;
+    [Range(0f, 1f)]
     public float carcassWeight;
     public GameManager.Flowers[] desiredFlowers = new GameManager.Flowers[3];
 

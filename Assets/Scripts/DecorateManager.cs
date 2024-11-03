@@ -18,12 +18,18 @@ public class DecorateManager : MonoBehaviour
     public Canvas selectUrnUI;
     public Image selectUrnImage;
 
-    public bool Enter(Customer c)
+	private void Start()
+	{
+        Enter(new Customer());
+	}
+
+	public bool Enter(Customer c)
     {
         if (currentCustomer == null)
         {
             currentCustomer = c;
             selectUrnImage.enabled = true;
+            ashBag.ashRemaining = currentCustomer.carcassWeight;
             return true;
         }
         else
@@ -48,7 +54,7 @@ public class DecorateManager : MonoBehaviour
 
     public void UrnSelect()
     {
-
+        selectUrnUI.enabled = false;
     }
 
 	public void CheckAccuracy() {
