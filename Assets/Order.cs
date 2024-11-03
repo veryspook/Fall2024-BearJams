@@ -51,14 +51,7 @@ public class Order : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHan
 		Order p = manager.pinned;
 		if (manager.pinHitbox.rect.Contains(transform.localPosition - manager.pinHitbox.localPosition))
 		{
-			if (p)
-			{
-				p.desiredPos = new Vector3((Screen.width / 2 - 450) / managerScale, manager.ticketRopeHeight, 0);
-				p.desiredScale = manager.ticketRopeScale;
-			}
-			manager.pinned = this;
-			desiredPos = manager.ticketPinPosition;
-			desiredScale = manager.ticketFocusScale;
+			manager.SetPinned(this);
 		}
 		else
 		{
@@ -66,7 +59,7 @@ public class Order : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHan
 			{
 				manager.pinned = null;
 			}
-			desiredPos = new Vector3(Mathf.Clamp(desiredPos.x, -Screen.width / 2 / managerScale, (Screen.width / 2 - 450) / managerScale), manager.ticketRopeHeight, 0);
+			desiredPos = new Vector3(Mathf.Clamp(desiredPos.x, -Screen.width / 2 / managerScale, (Screen.width / 2 - 400) / managerScale), manager.ticketRopeHeight, 0);
 		}
 	}
 

@@ -36,6 +36,7 @@ public class OrderManager : MonoBehaviour
 		GameObject orderObj = Instantiate(orderPrefab);
         orderObj.transform.parent = transform;
 		Order order = orderObj.GetComponent<Order>();
+        SetPinned(order);
         order.manager = this;
 		order.customer = customer;
 
@@ -61,6 +62,18 @@ public class OrderManager : MonoBehaviour
             order.flowerSprites[i].sprite = flowerIcons[(int) customer.desiredFlowers[i]];
         }
     }
+
+    public void SetPinned(Order o)
+    {
+		if (pinned)
+		{
+			pinned.desiredPos = new Vector3((Screen.width / 2 - 450) / transform.lossyScale.x, ticketRopeHeight, 0);
+			pinned.desiredScale = ticketRopeScale;
+		}
+		pinned = o;
+		o.desiredPos = ticketPinPosition;
+		o.desiredScale = ticketFocusScale;
+	}
 
 	public void TestOrder() {
         AddOrder(new Customer());
