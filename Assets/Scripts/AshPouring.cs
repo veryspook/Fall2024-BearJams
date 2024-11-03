@@ -51,12 +51,10 @@ public class AshPouring : MonoBehaviour
 		funnelBounds = new Vector2(-funnelWidth / 2, funnelWidth / 2);
 	}
 
-	private bool firstFrameClickProtection;
 	private void OnEnable()
 	{
 		currentAngle = startAngle;
 		UpdateBounds();
-		firstFrameClickProtection = true;
 	}
 
 	// Update is called once per frame
@@ -64,14 +62,10 @@ public class AshPouring : MonoBehaviour
     {
 		if (Input.GetMouseButtonDown(0))
 		{
-			if (!firstFrameClickProtection)
-			{
-				dragging = true;
-				dragStartPosition = GetMousePos();
-				dragStartAngle = currentAngle;
-				xPositionAtDragStart = pourPoint.position.x;
-			} else
-				firstFrameClickProtection = false;
+			dragging = true;
+			dragStartPosition = GetMousePos();
+			dragStartAngle = currentAngle;
+			xPositionAtDragStart = pourPoint.position.x;
 		}
 		else if (Input.GetMouseButtonUp(0))
 		{

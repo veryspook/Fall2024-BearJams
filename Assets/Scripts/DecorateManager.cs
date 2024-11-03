@@ -11,6 +11,7 @@ public class DecorateManager : MonoBehaviour
     public List<Transform> goalTransforms = new List<Transform>();
     public List<GameObject> urns = new List<GameObject>();
     public List<Sprite> urnSprites = new List<Sprite>();
+    public GameObject decorations;
 
     public Customer currentCustomer;
     public AshPouring ashBag;
@@ -29,17 +30,33 @@ public class DecorateManager : MonoBehaviour
     {
         if (currentCustomer == null)
         {
-            currentCustomer = c;
-            selectUrnImage.enabled = true;
-            ashBag.ashRemaining = currentCustomer.carcassWeight;
-            foreach (GameObject u in urns)
-            {
-                u.SetActive(false);
-            }
+			currentCustomer = c;
+			selectUrnImage.enabled = true;
+			ashBag.ashRemaining = currentCustomer.carcassWeight;
+			foreach (GameObject u in urns)
+			{
+				u.SetActive(false);
+			}
             return true;
         }
         else
             return false;
+	}
+
+    public IEnumerator EnterCoroutine()
+    {
+		selectUrnUI.enabled = false;
+		Urn urn = urns[currentUrn].GetComponent<Urn>();
+		urn.gameObject.SetActive(true);
+		urn.animator.SetBool("Open", true);
+		ashBag.funnelWidth = urn.funnelWidth;
+		ashBag.spillParticles = urn.spillParticles;
+        yield return new WaitForEndOfFrame();
+		ashBag.gameObject.SetActive(true);
+		yield return new WaitUntil(() => ashBag.ashRemaining <= 0);
+        urn.animator.SetBool("Open", false);
+        yield return new WaitForSeconds(0.3f);
+        ashBag.gameObject.SetActive(false);
 	}
 
     public void NextUrnSelect()
@@ -60,13 +77,7 @@ public class DecorateManager : MonoBehaviour
 
     public void UrnSelect()
     {
-        selectUrnUI.enabled = false;
-        Urn urn = urns[currentUrn].GetComponent<Urn>();
-		urn.gameObject.SetActive(true);
-        urn.animator.SetBool("Open", true);
-        ashBag.funnelWidth = urn.funnelWidth;
-        ashBag.spillParticles = urn.spillParticles;
-        ashBag.gameObject.SetActive(true);
+		StartCoroutine(EnterCoroutine());
     }
 
 	public void CheckAccuracy() {
