@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LayToRest
       objectReference: {fileID: 0}
+    - target: {fileID: 7010126317416605054, guid: 743dbd0e0011900488e6b96c5b35910b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -254,6 +258,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 370769938785697488, guid: add1a9b43fa1f9d488a9039479948c2f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NextCustomer
+      objectReference: {fileID: 0}
     - target: {fileID: 3269053715375449826, guid: add1a9b43fa1f9d488a9039479948c2f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -300,7 +308,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5608024483947567059, guid: add1a9b43fa1f9d488a9039479948c2f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

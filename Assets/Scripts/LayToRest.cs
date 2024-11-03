@@ -21,9 +21,11 @@ public class LayToRest : MonoBehaviour, IStation
 	{
 		if (currentCustomer == null && customerQueue.Count > 0)
 		{
+			currentCustomer = customerQueue[0];
 			DragCorpse corpse = Instantiate(corpsePrefab, (Vector3) startPosition, Quaternion.identity, coffin.transform).GetComponent<DragCorpse>();
 			coffin.SetActive(true);
 			corpse.Enter(currentCustomer);
+			customerQueue.RemoveAt(0);
 		}
 	}
 }

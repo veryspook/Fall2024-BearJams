@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using static System.Collections.Specialized.BitVector32;
 
 public class GameManager : MonoBehaviour
 {
@@ -46,7 +47,6 @@ public class GameManager : MonoBehaviour
 	public void ChangeStation(GameObject station)
 	{
 		nextStation = station;
-		station.GetComponent<IStation>().Enter();
 		animator.SetTrigger("Fade");
 	}
 	
@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
 	{
 		currentStation.gameObject.SetActive(false);
 		nextStation.SetActive(true);
+		nextStation.GetComponent<IStation>().Enter();
 		currentStation = nextStation;
 	}
 

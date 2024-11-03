@@ -6,13 +6,14 @@ using UnityEngine.UI;
 public class Furnace : MonoBehaviour
 {
     public Customer customer;
-    private float maxTime = 30f;
+    private float maxTime = 60f;
     [SerializeField]
-    private float readyTime = 15f;
+    private float readyTime = 40f;
     [SerializeField]
-    private float burnTime = 23f;
+    private float burnTime = 50f;
     [SerializeField] private Slider slider;
     [SerializeField] private Button insertButton;
+    [SerializeField] private Button extractButton;
     private float currTime = 0f;
     [SerializeField] private GameObject fire;
     public Animator coffinAnim;
@@ -47,18 +48,20 @@ public class Furnace : MonoBehaviour
     public void SetBody(Customer c)
     {
         coffinAnim.SetTrigger("Enter");
-        slider.enabled = false;
-        insertButton.enabled = true;
+        slider.gameObject.SetActive(false);
+        insertButton.gameObject.SetActive(true);
+        extractButton.gameObject.SetActive(false);
         customer = c;
     }
 
     public void PutInBody() {
         coffinAnim.SetTrigger("Insert");
         fire.SetActive(true);
-        slider.enabled = true;
-        insertButton.enabled = false;
+        slider.gameObject.SetActive(true);
+        insertButton.gameObject.SetActive(false);
+        extractButton.gameObject.SetActive(true);
         timer = StartCoroutine(Timer());
-    }
+	}
 
     public void TakeOutBody() {
         coffinAnim.SetTrigger("Remove");
@@ -67,8 +70,9 @@ public class Furnace : MonoBehaviour
         StopCoroutine(timer);
         cooking = false;
 
-		slider.enabled = false;
-		insertButton.enabled = false;
+		slider.gameObject.SetActive(false);
+		insertButton.gameObject.SetActive(false);
+		extractButton.gameObject.SetActive(false);
 
 		if (readyTime <= currTime && currTime <= burnTime) {
             customer.cookScore = 1;
@@ -80,6 +84,7 @@ public class Furnace : MonoBehaviour
             }
         }
 		currTime = 0f;
+        customer = null;
 
 	}
 }

@@ -512,6 +512,7 @@ MonoBehaviour:
   weightScale: 2.5
   flowerScale: 2.5
   speechSprite: {fileID: 3273849334443909675}
+  speechBubble: {fileID: 813802678506317170}
 --- !u!1 &6438799021045741470
 GameObject:
   m_ObjectHideFlags: 0

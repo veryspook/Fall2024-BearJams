@@ -29,7 +29,7 @@ public class OrderManager : MonoBehaviour
     public void AddOrder(Customer customer)
     {
 		GameObject orderObj = Instantiate(orderPrefab);
-        orderObj.transform.parent = ordersParent;
+        orderObj.transform.SetParent(ordersParent);
 		Order order = orderObj.GetComponent<Order>();
         order.manager = this;
 		order.customer = customer;

@@ -14,6 +14,7 @@ public class FrontDesk : MonoBehaviour, IStation
 	public float weightScale = 2.5f;
 	public float flowerScale = 2.5f;
 	public SpriteRenderer speechSprite;
+	public GameObject speechBubble;
 
 	private void Awake()
 	{
@@ -21,26 +22,32 @@ public class FrontDesk : MonoBehaviour, IStation
 		Enqueue(Customer.Generate());
 	}
 
-	private void OnEnable()
+	public void Enter()
 	{
+		speechBubble.SetActive(false);
 		if (customerQueue.Count > 0)
 			startOrderUI.gameObject.SetActive(true);
 		else
 			startOrderUI.gameObject.SetActive(false);
 	}
 
-	public void Enter()
+	public void NextCustomer()
 	{
-		StartCoroutine(CustomerOrder());
+		if (customerQueue.Count > 0)
+			StartCoroutine(CustomerOrder());
+		else
+			animator.gameObject.SetActive(false);
 	}
 
 	private IEnumerator CustomerOrder()
 	{
 		startOrderUI.gameObject.SetActive(false);
+		animator.gameObject.SetActive(true);
 		animator.SetTrigger("Walk");
 		currentCustomer = customerQueue[0];
 		customerQueue.RemoveAt(0);
 		yield return new WaitForSeconds(1.5f);
+		speechBubble.SetActive(true);
 		speechSprite.sprite = GameManager.instance.WeightToSprite(currentCustomer.carcassWeight);
 		speechSprite.transform.localScale = Vector3.one * weightScale;
 		animator.SetTrigger("Speech");
@@ -59,6 +66,7 @@ public class FrontDesk : MonoBehaviour, IStation
 		GameManager.instance.orderManager.AddOrder(currentCustomer);
 		GameManager.instance.layToRest.GetComponent<IStation>().Enqueue(currentCustomer);
 		yield return new WaitForSeconds(0.3f);
+		animator.SetTrigger("Exit");
 		GameManager.instance.ChangeStation(GameManager.instance.layToRest);
 	}
 

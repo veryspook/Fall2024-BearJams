@@ -38,7 +38,7 @@ public class DragCorpse : MonoBehaviour
 			rb.constraints = RigidbodyConstraints2D.None;
 		}
 	}
-
+	
 	// Update is called once per frame
 	void Update()
 	{
@@ -59,14 +59,16 @@ public class DragCorpse : MonoBehaviour
 		{
 			// Stop dragging.
 			dragging = null;
+			Coroutine finish = null;
 			foreach (Rigidbody2D rb in rbList)
 			{
 				Collider2D[] cs = new Collider2D[rb.attachedColliderCount];
 				rb.GetAttachedColliders(cs);
 				foreach (Collider2D c in cs)
 				{
-					if (coffin.bounds.Intersects(c.bounds)) {
-						StartCoroutine(FinishCoroutine());
+					if (finish == null && coffin.bounds.Intersects(c.bounds)) {
+						finish = StartCoroutine(FinishCoroutine());
+						break;
 					}
 				}
 			}
@@ -92,6 +94,7 @@ public class DragCorpse : MonoBehaviour
 		GameManager.instance.burn.GetComponent<IStation>().Enqueue(currentCustomer);
 		yield return new WaitForSeconds(1f);
 		Destroy(gameObject, 0.5f);
+		coffinAnimator.SetTrigger("Exit");
 		GameManager.instance.ChangeStation(GameManager.instance.burn);
 	}
 

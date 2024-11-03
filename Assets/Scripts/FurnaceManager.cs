@@ -16,10 +16,12 @@ public class FurnaceManager : MonoBehaviour, IStation
 
 	public void Enter()
 	{
+		Debug.Log(customerQueue);
 		foreach (Furnace furnace in furnaces)
 		{
 			if (!furnace.cooking && customerQueue.Count > 0)
 			{
+				Debug.Log(customerQueue.Count);
 				furnace.SetBody(customerQueue[0]);
 				customerQueue.RemoveAt(0);
 				if (customerQueue.Count <= 0)
