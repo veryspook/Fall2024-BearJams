@@ -44,11 +44,13 @@ public class DecorateManager : MonoBehaviour, IStation
     public void Finish(Customer c)
     {
         c.decorScore = GetScore(c);
-    }
+		c.pourScore = Mathf.Clamp01(1 - ashBag.amountSpilled * 4 / c.carcassWeight);
+	}
 
 	public void Enqueue(Customer customer)
 	{
 		customerQueue.Add(customer);
+
 	}
 
 	public IEnumerator EnterCoroutine()
@@ -103,10 +105,9 @@ public class DecorateManager : MonoBehaviour, IStation
         float finalScore = 0;
         if ((GameManager.Urns) currentUrn == c.desiredUrn)
         {
-            finalScore += 0.2f;
+            finalScore += 0.3f;
         }
-        finalScore += 0.4f * Mathf.Clamp01(1 - ashBag.amountSpilled * 4 / c.carcassWeight);
-        finalScore += 0.4f * CheckAccuracy(c);
+        finalScore += 0.7f * CheckAccuracy(c);
         return Mathf.Clamp01(finalScore);
     }
 
