@@ -15,4 +15,20 @@ public class Urn : MonoBehaviour
 		animator = GetComponentInChildren<Animator>();
 		spillParticles = GetComponent<ParticleSystem>();
 	}
+
+	public void ShowTargets()
+	{
+		foreach (Transform t in targetPoints)
+		{
+			t.gameObject.SetActive(true);
+		}
+	}
+
+	public void HideTargets()
+	{
+		foreach (Transform t in targetPoints)
+		{
+			t.gameObject.SetActive(false);
+		}
+	}
 }

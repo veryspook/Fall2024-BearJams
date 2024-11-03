@@ -57,6 +57,7 @@ public class DecorateManager : MonoBehaviour
     {
 		selectUrnUI.enabled = false;
 		urn = urns[currentUrn].GetComponent<Urn>();
+        urn.HideTargets();
         foreach (GameObject d in urn.decorations)
             Destroy(d);
 		urn.gameObject.SetActive(true);
@@ -71,10 +72,9 @@ public class DecorateManager : MonoBehaviour
         urn.animator.SetBool("Open", false);
         yield return new WaitForSeconds(0.3f);
         ashBag.gameObject.SetActive(false);
+        urn.ShowTargets();
         foreach (FlowerSource fs in flowerSources)
-        {
             fs.draggable = true;
-        }
 	}
 
     public void NextUrnSelect()
