@@ -33,7 +33,6 @@ public class DragCorpse : MonoBehaviour
 	public void Enter(Customer customer)
 	{
 		ApplyForce(scrambleStrength);
-		coffinAnimator.SetTrigger("Exit");
 		currentCustomer = customer;
 		foreach (Rigidbody2D rb in rbList)
 		{
@@ -98,6 +97,7 @@ public class DragCorpse : MonoBehaviour
 		currentCustomer.layToRestScore = GetPercentCovered();
 		GameManager.instance.burn.GetComponent<IStation>().Enqueue(currentCustomer);
 		yield return new WaitForSeconds(2f);
+		coffinAnimator.SetTrigger("Exit");
 		manager.currentCustomer = null;
 		Destroy(gameObject, 1f);
 		GameManager.instance.ChangeStation(GameManager.instance.burn);
