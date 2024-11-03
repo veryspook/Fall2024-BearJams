@@ -27,7 +27,7 @@ public class FlowerSource : MonoBehaviour
 			RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 			if (prefabInstance && urn && hit && hit.collider && hit.collider.transform.parent == urn.gameObject.transform)
 			{
-				prefabInstance.transform.parent = urn.transform;
+				prefabInstance.transform.parent = hit.collider.gameObject.transform;
 				prefabInstance = null;
 			} else
 			{
