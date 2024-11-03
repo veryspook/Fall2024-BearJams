@@ -605,10 +605,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Decoration Station
       objectReference: {fileID: 0}
-    - target: {fileID: 3556232782608761919, guid: 523418aab3631e44298903528527e83d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3830593179258959317, guid: 523418aab3631e44298903528527e83d, type: 3}
       propertyPath: lifeManager
       value: 
@@ -656,6 +652,10 @@ PrefabInstance:
     - target: {fileID: 5180471272628734102, guid: 523418aab3631e44298903528527e83d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7935277223037851087, guid: 523418aab3631e44298903528527e83d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.347925
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
