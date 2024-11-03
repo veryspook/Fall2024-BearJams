@@ -276,6 +276,7 @@ MonoBehaviour:
   decorations: {fileID: 0}
   ashBag: {fileID: 0}
   currentUrn: 0
+  urn: {fileID: 0}
   selectUrnUI: {fileID: 0}
   selectUrnImage: {fileID: 0}
 --- !u!1 &18428131
