@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 	public Canvas gameOver;
 	public TextMeshProUGUI gameOverScoreText;
 	public TextMeshProUGUI gameOverCustomersText;
+	public TextMeshProUGUI scoreText;
 
 	private float nextCustomerTime;
 	private float customerCooldown = 30;
@@ -65,6 +66,7 @@ public class GameManager : MonoBehaviour
 		gameDuration += Time.deltaTime;
 		nextCustomerTime -= Time.deltaTime;
 		newCustomerClock.fillAmount = Mathf.Clamp01(nextCustomerTime / customerCooldown);
+		scoreText.text = "Score:\n" + score.ToString("n");
 	}
 
 	private IEnumerator CustomerFlow()
