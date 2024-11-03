@@ -6,12 +6,12 @@ using UnityEngine.EventSystems;
 public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     private bool canDrag = true;
-    private DragManager _manager = null;
+    public DragManager _manager = null;
 
     private DecorateManager _decoManager = null;
 
-    private Vector2 _centerPoint;
-    private Vector2 _worldCenterPoint => transform.TransformPoint(_centerPoint);
+    public Vector2 _centerPoint;
+    public Vector2 _worldCenterPoint => transform.TransformPoint(_centerPoint);
 
     private void Awake()
     {
@@ -21,14 +21,14 @@ public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         _centerPoint = (transform as RectTransform).rect.center;
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
+    public virtual void OnBeginDrag(PointerEventData eventData)
     {
         if(canDrag == true) {
             _manager.RegisterDraggedObject(this);
         }
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public virtual void OnDrag(PointerEventData eventData)
     {
         if (_manager.IsWithinBounds(_worldCenterPoint + eventData.delta)&& canDrag == true)
         {
@@ -36,7 +36,7 @@ public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         }
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    public virtual void OnEndDrag(PointerEventData eventData)
     {
         if (canDrag == true) {
             canDrag = false;
