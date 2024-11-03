@@ -43,25 +43,14 @@ public class Furnace : MonoBehaviour
         }
 	}
 
-	// Update is called once per frame
-	void Update()
-    {
-        if (customer == null) {
-            cooking = false;
-            fire.SetActive(false);
-        } else {
-            cooking = true;
-            fire.SetActive(true);
-        }
-    }
-
     public void SetBody(Customer c)
     {
         coffinAnim.SetTrigger("Enter");
         slider.gameObject.SetActive(false);
         insertButton.gameObject.SetActive(true);
+        fire.SetActive(false);
         extractButton.gameObject.SetActive(false);
-        customer = c;
+		customer = c;
     }
 
     public void PutInBody() {
@@ -70,6 +59,7 @@ public class Furnace : MonoBehaviour
         slider.gameObject.SetActive(true);
         insertButton.gameObject.SetActive(false);
         extractButton.gameObject.SetActive(true);
+        cooking = true;
         timer = StartCoroutine(Timer());
 	}
 
