@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
 		gameDuration += Time.deltaTime;
 		nextCustomerTime -= Time.deltaTime;
 		newCustomerClock.fillAmount = Mathf.Clamp01(nextCustomerTime / customerCooldown);
-		scoreText.text = "Score:\n" + score.ToString("n");
+		scoreText.text = "Score:\n" + score.ToString();
 	}
 
 	private IEnumerator CustomerFlow()
