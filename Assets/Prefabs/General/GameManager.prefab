@@ -854,8 +854,8 @@ RectTransform:
   - {fileID: 5375491590841888135}
   - {fileID: 6798747769615693079}
   - {fileID: 7362993721033030974}
-  - {fileID: 333135789947240296}
   - {fileID: 7748720009497723341}
+  - {fileID: 333135789947240296}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -913,6 +913,7 @@ MonoBehaviour:
   gameOverScoreText: {fileID: 1182871171886229800}
   gameOverCustomersText: {fileID: 6430217014212472794}
   scoreText: {fileID: 3761140569652336165}
+  customerCooldown: 30
   score: 0
   urnSprites:
   - {fileID: 21300000, guid: 10935f2b525da4346b1f53bb543ac32c, type: 3}

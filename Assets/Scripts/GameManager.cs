@@ -24,12 +24,13 @@ public class GameManager : MonoBehaviour
 	public Image newCustomerClock;
 	public LifeManager lifeManager;
 	public ResultsManager resultsManager;
-	public Canvas gameOver;
+	public GameObject gameOver;
 	public TextMeshProUGUI gameOverScoreText;
 	public TextMeshProUGUI gameOverCustomersText;
 	public TextMeshProUGUI scoreText;
 
 	private float nextCustomerTime;
+	[SerializeField]
 	private float customerCooldown = 30;
 	private float gameDuration = 0;
 	public float score = 0;
@@ -88,7 +89,7 @@ public class GameManager : MonoBehaviour
 	public void GameOver()
 	{
 		currentStation.SetActive(false);
-		gameOver.enabled = true;
+		gameOver.SetActive(true);
 		gameOverScoreText.text = "Final Score: <color=red>" + score;
 		gameOverCustomersText.text = "Orders Completed: <color=red>" + orderManager.orderNum;
 	}
