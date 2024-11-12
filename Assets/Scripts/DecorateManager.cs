@@ -70,7 +70,7 @@ public class DecorateManager : MonoBehaviour, IStation
             {
                 lifeManager.LoseLife();
             }
-            GameManager.instance.score += Mathf.Ceil(sum * 100);
+            GameManager.instance.score += (int)Mathf.Ceil(sum * 100);
             resultsManager.DisplayResults(c);
             currentCustomer = null;
         }

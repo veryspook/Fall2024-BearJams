@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField]
 	private float customerCooldown = 30;
 	private float gameDuration = 0;
-	public float score = 0;
+	public int score = 0;
 
 	public enum Urns
 	{
