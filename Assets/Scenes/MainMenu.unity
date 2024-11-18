@@ -645,7 +645,7 @@ GameObject:
   - component: {fileID: 408691324}
   - component: {fileID: 408691323}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -690,7 +690,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1906328022, guid: bb63a67c0034cbd43ba2124744768235, type: 3}
+  m_Sprite: {fileID: -1330755307, guid: df584c610b0f4404896407d35e9f15a5, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -930,7 +930,7 @@ GameObject:
   - component: {fileID: 784133494}
   - component: {fileID: 784133493}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Spooky
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1275,7 +1275,7 @@ GameObject:
   - component: {fileID: 950272965}
   - component: {fileID: 950272964}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1349,7 +1349,7 @@ GameObject:
   - component: {fileID: 1155585791}
   - component: {fileID: 1155585792}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
