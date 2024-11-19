@@ -24,11 +24,20 @@ public class DecorateManager : MonoBehaviour, IStation
     public ResultsManager resultsManager;
     public LifeManager lifeManager;
 
+    private enum States
+    {
+        Empty,
+        Selecting,
+        Pouring,
+        Decorating
+    }
+    private States currentState = States.Empty;
 
 	public void Enter()
     {
         if (currentCustomer == null && customerQueue.Count > 0)
         {
+            currentState = States.Selecting;
             submitButton.enabled = false;
             currentCustomer = customerQueue[0];
             customerQueue.RemoveAt(0);
@@ -45,7 +54,7 @@ public class DecorateManager : MonoBehaviour, IStation
             }
         } else
         {
-			selectUrnUI.enabled = false;
+			selectUrnUI.enabled = currentState == States.Selecting;
 
 		}
 	}
@@ -55,6 +64,7 @@ public class DecorateManager : MonoBehaviour, IStation
         OrderManager om = GameManager.instance.orderManager;
         if (om.pinned)
         {
+            currentState = States.Empty;
             Customer c = om.pinned.customer;
             Debug.Log(c);
             c.decorScore = GetScore(c);
@@ -81,7 +91,26 @@ public class DecorateManager : MonoBehaviour, IStation
 		customerQueue.Add(customer);
 	}
 
-	public IEnumerator EnterCoroutine()
+	private void OnEnable()
+	{
+		switch (currentState)
+        {
+            case States.Selecting:
+                break;
+            case States.Pouring:
+                StartCoroutine(PourCoroutine());
+                break;
+            case States.Decorating:
+                DecoratingEnter();
+                break;
+            case States.Empty:
+				break;
+            default:
+                break;
+        }
+	}
+
+	public IEnumerator SelectCoroutine()
     {
 		selectUrnUI.enabled = false;
 		urn = urns[currentUrn].GetComponent<Urn>();
@@ -94,16 +123,28 @@ public class DecorateManager : MonoBehaviour, IStation
             fs.urn = urn;
 		ashBag.funnelWidth = urn.funnelWidth;
 		ashBag.spillParticles = urn.spillParticles;
+        currentState = States.Pouring;
         yield return new WaitForSeconds(0.1f);
 		ashBag.gameObject.SetActive(true);
+        StartCoroutine(PourCoroutine());
+	}
+
+    public IEnumerator PourCoroutine()
+    {
 		yield return new WaitUntil(() => ashBag.ashRemaining <= 0);
-        urn.animator.SetBool("Open", false);
-        yield return new WaitForSeconds(0.3f);
-        ashBag.gameObject.SetActive(false);
-        urn.ShowTargets();
-        submitButton.enabled = true;
-        foreach (FlowerSource fs in flowerSources)
-            fs.draggable = true;
+		urn.animator.SetBool("Open", false);
+        currentState = States.Decorating;
+		yield return new WaitForSeconds(0.3f);
+		DecoratingEnter();
+	}
+
+    public void DecoratingEnter()
+    {
+		ashBag.gameObject.SetActive(false);
+		urn.ShowTargets();
+		submitButton.enabled = true;
+		foreach (FlowerSource fs in flowerSources)
+			fs.draggable = true;
 	}
 
     private void DestroyDecorations()
@@ -133,7 +174,7 @@ public class DecorateManager : MonoBehaviour, IStation
 
     public void UrnSelect()
     {
-		StartCoroutine(EnterCoroutine());
+		StartCoroutine(SelectCoroutine());
     }
 
     public float GetScore(Customer c)

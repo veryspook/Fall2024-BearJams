@@ -47,22 +47,25 @@ public class FrontDesk : MonoBehaviour, IStation
 		GameManager.instance.HideBottomBar();
 		currentCustomer = customerQueue[0];
 		customerQueue.RemoveAt(0);
-		yield return new WaitForSeconds(1.5f);
-		speechBubble.SetActive(true);
-		speechSprite.sprite = GameManager.instance.WeightToSprite(currentCustomer.carcassWeight);
-		speechSprite.transform.localScale = Vector3.one * weightScale;
-		animator.SetTrigger("Speech");
-		yield return new WaitForSeconds(0.9f);
-		speechSprite.sprite = GameManager.instance.urnSprites[(int)currentCustomer.desiredUrn];
-		speechSprite.transform.localScale = Vector3.one * urnScale;
-		animator.SetTrigger("Speech");
-		yield return new WaitForSeconds(0.9f);
-		for (int i = 0; i < Customer.DECORATION_COUNT; i++)
+		if (!GameManager.instance.debugMode)
 		{
-			speechSprite.sprite = GameManager.instance.flowerSprites[(int)currentCustomer.desiredFlowers[i]];
-			speechSprite.transform.localScale = Vector3.one * flowerScale;
+			yield return new WaitForSeconds(1.5f);
+			speechBubble.SetActive(true);
+			speechSprite.sprite = GameManager.instance.WeightToSprite(currentCustomer.carcassWeight);
+			speechSprite.transform.localScale = Vector3.one * weightScale;
 			animator.SetTrigger("Speech");
 			yield return new WaitForSeconds(0.9f);
+			speechSprite.sprite = GameManager.instance.urnSprites[(int)currentCustomer.desiredUrn];
+			speechSprite.transform.localScale = Vector3.one * urnScale;
+			animator.SetTrigger("Speech");
+			yield return new WaitForSeconds(0.9f);
+			for (int i = 0; i < Customer.DECORATION_COUNT; i++)
+			{
+				speechSprite.sprite = GameManager.instance.flowerSprites[(int)currentCustomer.desiredFlowers[i]];
+				speechSprite.transform.localScale = Vector3.one * flowerScale;
+				animator.SetTrigger("Speech");
+				yield return new WaitForSeconds(0.9f);
+			}
 		}
 		GameManager.instance.orderManager.AddOrder(currentCustomer);
 		GameManager.instance.layToRest.GetComponent<IStation>().Enqueue(currentCustomer);

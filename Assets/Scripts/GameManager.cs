@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
 	private float gameDuration = 0;
 	public int score = 0;
 
+	public bool debugMode = false;
+
 	public enum Urns
 	{
 		Black = 0,
