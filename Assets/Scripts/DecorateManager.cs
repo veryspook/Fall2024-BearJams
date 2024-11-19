@@ -190,7 +190,7 @@ public class DecorateManager : MonoBehaviour, IStation
 
     public float CheckAccuracy(Customer c)
     {
-        List<Transform> goals = urn.targetPoints;
+        List<Transform> goals = new List<Transform>(urn.targetPoints);
         float totalAccuracy = 0f;
         float extraItems = urn.decorations.Count - goals.Count;
 

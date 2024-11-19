@@ -34,7 +34,7 @@ public class LayToRest : MonoBehaviour, IStation
 		}
 		if (currentCustomer == null && customerQueue.Count > 0)
 		{
-			Invoke("CreateCustomer", 0);
+			Invoke("CreateCustomer", 0.017f);
 		}
 	}
 
