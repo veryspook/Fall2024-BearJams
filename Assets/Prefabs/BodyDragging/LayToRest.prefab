@@ -520,7 +520,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2069696572390534102
 Transform:
   m_ObjectHideFlags: 0
@@ -552,6 +552,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   corpsePrefab: {fileID: 4502924303382431890, guid: 5ee0f8ac64970964db24df0687fadbdb, type: 3}
-  corpseScale: 1.5
   coffin: {fileID: 2003645739647843279}
   startPosition: {x: -3, y: 1.5}
+  reset: 0

@@ -18,7 +18,7 @@ public class FurnaceManager : MonoBehaviour, IStation
 	{
 		foreach (Furnace furnace in furnaces)
 		{
-			if (!furnace.cooking && customerQueue.Count > 0)
+			if (!furnace.taken && customerQueue.Count > 0)
 			{
 				furnace.SetBody(customerQueue[0]);
 				customerQueue.RemoveAt(0);

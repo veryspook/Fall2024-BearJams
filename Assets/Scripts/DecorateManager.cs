@@ -55,7 +55,6 @@ public class DecorateManager : MonoBehaviour, IStation
         } else
         {
 			selectUrnUI.enabled = currentState == States.Selecting;
-
 		}
 	}
 
@@ -66,7 +65,6 @@ public class DecorateManager : MonoBehaviour, IStation
         {
             currentState = States.Empty;
             Customer c = om.pinned.customer;
-            Debug.Log(c);
             c.decorScore = GetScore(c);
             urn.HideTargets();
             urn.animator.ResetTrigger("Enter");
@@ -75,7 +73,7 @@ public class DecorateManager : MonoBehaviour, IStation
             submitButton.enabled = false;
             Destroy(om.pinned.gameObject);
             om.pinned = null;
-            float sum = c.layToRestScore + c.cookScore + c.pourScore + c.decorScore;
+            float sum = c.layToRestScore + currentCustomer.cookScore + c.pourScore + c.decorScore;
             if (sum / 4 < 0.5)
             {
                 lifeManager.LoseLife();

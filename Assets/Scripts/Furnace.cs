@@ -19,6 +19,7 @@ public class Furnace : MonoBehaviour
     public Animator coffinAnim;
     public Animator trayAnim;
     public Coroutine timer;
+    public bool taken = false;
     public bool cooking = false;
 
 	IEnumerator Timer() {
@@ -45,6 +46,7 @@ public class Furnace : MonoBehaviour
 
     public void SetBody(Customer c)
     {
+        taken = true;
         coffinAnim.SetTrigger("Enter");
         slider.gameObject.SetActive(false);
         insertButton.gameObject.SetActive(true);
@@ -68,6 +70,7 @@ public class Furnace : MonoBehaviour
         trayAnim.SetTrigger("Remove");
         fire.SetActive(false);
         StopCoroutine(timer);
+        taken = false;
         cooking = false;
 
 		slider.gameObject.SetActive(false);

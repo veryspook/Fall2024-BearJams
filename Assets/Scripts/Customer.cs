@@ -18,7 +18,7 @@ public class Customer
         desiredFlowers = flowers;
     }
     
-    public string ToString()
+    public new string ToString()
     {
         return desiredFlowers.ToString() + " " + desiredUrn.ToString() + " " + carcassWeight; 
     }

@@ -18,7 +18,7 @@ public class DragCorpse : MonoBehaviour
 
 	[SerializeField] private Rigidbody2D[] rbList;
 
-	private void Awake()
+	private void Start()
 	{
 		coffin = transform.parent.GetComponent<Collider2D>();
 		coffinAnimator = transform.parent.GetComponent<Animator>();
@@ -75,7 +75,7 @@ public class DragCorpse : MonoBehaviour
 
 		if (GetPercentCovered() > 0.001)
 		{
-			Debug.Log(GetPercentCovered());
+			// Debug.Log(GetPercentCovered());
 		}
 
 		if (dragging != null)
@@ -99,10 +99,9 @@ public class DragCorpse : MonoBehaviour
 		GameManager.instance.burn.GetComponent<IStation>().Enqueue(currentCustomer);
 		yield return new WaitForSeconds(1f);
 		manager.currentCustomer = null;
+		manager.reset = true;
 		Destroy(gameObject, 1f);
 		GameManager.instance.ChangeStation(GameManager.instance.burn);
-		yield return new WaitForSeconds(0.2f);
-		coffinAnimator.SetTrigger("Exit");
 	}
 
 	private void ApplyForce(float strength)
