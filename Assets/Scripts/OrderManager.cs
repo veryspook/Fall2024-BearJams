@@ -67,7 +67,7 @@ public class OrderManager : MonoBehaviour
     {
 		if (pinned)
 		{
-			pinned.desiredPos = new Vector3((Screen.width / 2 - 450) / transform.lossyScale.x, ticketRopeHeight, 0);
+			pinned.desiredPos = new Vector3(pinHitbox.localPosition.x - pinHitbox.rect.width / 2, ticketRopeHeight, 0);
 			pinned.desiredScale = ticketRopeScale;
 		}
 		pinned = o;

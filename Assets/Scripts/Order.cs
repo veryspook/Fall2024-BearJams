@@ -37,7 +37,7 @@ public class Order : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHan
 	public void OnEndDrag(PointerEventData eventData)
 	{
 		desiredScale = manager.ticketRopeScale;
-		float managerScale = manager.transform.lossyScale.x;
+		float scale = transform.lossyScale.x;
 		Order p = manager.pinned;
 		if (manager.pinHitbox.rect.Contains(transform.localPosition - manager.pinHitbox.localPosition))
 		{
@@ -49,7 +49,7 @@ public class Order : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHan
 			{
 				manager.pinned = null;
 			}
-			desiredPos = new Vector3(Mathf.Clamp(desiredPos.x, -Screen.width / 2 / managerScale, (Screen.width / 2 - 400) / managerScale), manager.ticketRopeHeight, 0);
+			desiredPos = new Vector3(Mathf.Clamp(desiredPos.x, -(manager.transform as RectTransform).rect.width / 2, manager.pinHitbox.localPosition.x - manager.pinHitbox.rect.width / 2), manager.ticketRopeHeight, 0);
 		}
 	}
 
