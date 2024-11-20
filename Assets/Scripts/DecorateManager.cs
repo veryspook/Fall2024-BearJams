@@ -201,7 +201,7 @@ public class DecorateManager : MonoBehaviour, IStation
 
         foreach (GameObject deco in urn.decorations)
         {
-            if (deco)
+            if (deco && goals.Count > 0)
             {
                 Transform decoTransform = deco.transform;
                 float min = Mathf.Abs(Mathf.Abs(goals[0].position.x) - Mathf.Abs(decoTransform.position.x)) + Mathf.Abs(Mathf.Abs(goals[0].position.y) - Mathf.Abs(decoTransform.position.y));
