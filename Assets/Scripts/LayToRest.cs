@@ -34,7 +34,7 @@ public class LayToRest : MonoBehaviour, IStation
 		}
 		if (currentCustomer == null && customerQueue.Count > 0)
 		{
-			Invoke("CreateCustomer", 0.017f);
+			CreateCustomer();
 		}
 	}
 
@@ -42,6 +42,7 @@ public class LayToRest : MonoBehaviour, IStation
 	{
 		currentCustomer = customerQueue[0];
 		currentCorpse = Instantiate(corpsePrefab, (Vector3)startPosition, Quaternion.identity, coffin.transform).GetComponent<DragCorpse>();
+		currentCorpse.transform.localPosition = startPosition;
 		coffin.SetActive(true);
 		currentCorpse.manager = this;
 		currentCorpse.Enter(currentCustomer);
