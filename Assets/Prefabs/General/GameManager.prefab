@@ -913,7 +913,7 @@ MonoBehaviour:
   scoreText: {fileID: 3761140569652336165}
   customerCooldown: 30
   score: 0
-  debugMode: 1
+  debugMode: 0
   urnSprites:
   - {fileID: 21300000, guid: 10935f2b525da4346b1f53bb543ac32c, type: 3}
   - {fileID: 21300000, guid: b11d05ae325d06f4ea23a2dcab44606a, type: 3}
