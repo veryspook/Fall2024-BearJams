@@ -18,15 +18,14 @@ public class AudioManager : MonoBehaviour
     }
     public Sound[] sounds;
     public Sound[] tracks;
-    public string[] levelSoundtrack;
     // Start is called before the first frame update
     void Awake()
     {
         if (instance == null){
             instance = this;
-            DontDestroyOnLoad(transform.parent.gameObject);
+            //DontDestroyOnLoad(gameObject);
         } else{
-            Destroy(transform.parent.gameObject);
+            Destroy(gameObject);
         }
     }
     

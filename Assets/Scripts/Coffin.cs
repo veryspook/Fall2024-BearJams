@@ -9,5 +9,6 @@ public class Coffin : MonoBehaviour
     public void ShutCorpse()
     {
         corpse.Slam();
+        AudioManager.instance.PlaySound("Coffin Close");
     }
 }

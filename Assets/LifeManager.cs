@@ -21,6 +21,7 @@ public class LifeManager : MonoBehaviour
         if (lives >= 1) {
             lifeIcons[lives - 1].sprite = lostLife;
             lives -= 1;
+            AudioManager.instance.PlaySound("Life Timer");
             if (lives <= 0) {
                 GameManager.instance.GameOver();
             }

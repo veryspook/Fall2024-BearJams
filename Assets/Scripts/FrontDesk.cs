@@ -44,6 +44,7 @@ public class FrontDesk : MonoBehaviour, IStation
 		startOrderUI.gameObject.SetActive(false);
 		animator.gameObject.SetActive(true);
 		animator.SetTrigger("Walk");
+		AudioManager.instance.PlaySound("Footsteps");
 		GameManager.instance.HideBottomBar();
 		currentCustomer = customerQueue[0];
 		customerQueue.RemoveAt(0);
@@ -54,16 +55,19 @@ public class FrontDesk : MonoBehaviour, IStation
 			speechSprite.sprite = GameManager.instance.WeightToSprite(currentCustomer.carcassWeight);
 			speechSprite.transform.localScale = Vector3.one * weightScale;
 			animator.SetTrigger("Speech");
+			AudioManager.instance.PlaySound("Speech Bubble");
 			yield return new WaitForSeconds(0.9f);
 			speechSprite.sprite = GameManager.instance.urnSprites[(int)currentCustomer.desiredUrn];
 			speechSprite.transform.localScale = Vector3.one * urnScale;
 			animator.SetTrigger("Speech");
+			AudioManager.instance.PlaySound("Speech Bubble");
 			yield return new WaitForSeconds(0.9f);
 			for (int i = 0; i < Customer.DECORATION_COUNT; i++)
 			{
 				speechSprite.sprite = GameManager.instance.flowerSprites[(int)currentCustomer.desiredFlowers[i]];
 				speechSprite.transform.localScale = Vector3.one * flowerScale;
 				animator.SetTrigger("Speech");
+				AudioManager.instance.PlaySound("Speech Bubble");
 				yield return new WaitForSeconds(0.9f);
 			}
 		}
