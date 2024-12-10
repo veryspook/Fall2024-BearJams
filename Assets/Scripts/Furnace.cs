@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Furnace : MonoBehaviour
 {
     public Customer customer;
-    private float maxTime = 60f;
+    public float maxTime = 60f;
     [SerializeField]
     private float readyTime = 40f;
     [SerializeField]
@@ -18,19 +18,16 @@ public class Furnace : MonoBehaviour
     [SerializeField] private GameObject fire;
     public Animator coffinAnim;
     public Animator trayAnim;
-    public Coroutine timer;
     public bool taken = false;
     public bool cooking = false;
+    AudioSource fireAudio;
 
-	IEnumerator Timer() {
-        while (currTime < maxTime) {
-            yield return new WaitForEndOfFrame();
-            currTime += Time.deltaTime * (1 / customer.carcassWeight);
-            slider.value = currTime / maxTime;
-        }
-    }
+	private void Awake()
+	{
+		fireAudio = GetComponent<AudioSource>();
+	}
 
-    float timeOfDisable;
+	float timeOfDisable;
 	private void OnDisable()
 	{
         timeOfDisable = Time.fixedTime;
@@ -40,11 +37,19 @@ public class Furnace : MonoBehaviour
 		if (cooking)
         {
             currTime += Time.fixedTime - timeOfDisable;
-            timer = StartCoroutine(Timer());
         }
 	}
 
-    public void SetBody(Customer c)
+	private void Update()
+	{
+        if (cooking)
+        {
+            currTime += Time.deltaTime * (1 / customer.carcassWeight);
+            slider.value = currTime / maxTime;
+        }
+	}
+
+	public void SetBody(Customer c)
     {
         taken = true;
         coffinAnim.SetTrigger("Enter");
@@ -62,28 +67,28 @@ public class Furnace : MonoBehaviour
         insertButton.gameObject.SetActive(false);
         extractButton.gameObject.SetActive(true);
         cooking = true;
-        timer = StartCoroutine(Timer());
+        fireAudio.Play();
 	}
 
     public void TakeOutBody() {
         coffinAnim.SetTrigger("Remove");
         trayAnim.SetTrigger("Remove");
         fire.SetActive(false);
-        StopCoroutine(timer);
         taken = false;
         cooking = false;
-
+        fireAudio.Pause();
 		slider.gameObject.SetActive(false);
 		insertButton.gameObject.SetActive(false);
 		extractButton.gameObject.SetActive(false);
 
+        Debug.Log(readyTime + " " + currTime + " " + burnTime);
 		if (readyTime <= currTime && currTime <= burnTime) {
             customer.cookScore = 1;
         } else {
-            if (readyTime - currTime > 0) {
-                customer.cookScore = 1 - Mathf.Abs(currTime - readyTime)/readyTime; 
+            if (readyTime > currTime) {
+                customer.cookScore = (readyTime - currTime)/readyTime; 
             } else {
-                customer.cookScore = 1 - (currTime - burnTime)/currTime;
+                customer.cookScore = Mathf.Max(0, maxTime - currTime)/(maxTime - burnTime);
             }
         }
 		currTime = 0f;

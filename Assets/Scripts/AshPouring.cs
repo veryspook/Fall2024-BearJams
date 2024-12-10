@@ -38,10 +38,14 @@ public class AshPouring : MonoBehaviour
 	[SerializeField] private AnimationCurve pourLifetimeForAngle;
 	[SerializeField] private AnimationCurve spillParticleForAmount;
 	[SerializeField] private AnimationCurve spillSpriteOpacity;
+	AudioSource pourAudio;
+	public float pourAudioVolumeCoefficient = 0.4f;
+	public float overflowPitchCoefficient = 1f;
 
 
 	private void Start()
 	{
+		pourAudio = GetComponent<AudioSource>();
 		pourPointStartPos = pourPoint.position;
 		UpdateBounds();
 	}
@@ -104,6 +108,9 @@ public class AshPouring : MonoBehaviour
 			amountSpilled += spillAmount * Time.deltaTime;
 
 		spillSprite.color = new Color(1, 1, 1, spillSpriteOpacity.Evaluate(amountSpilled));
+
+		pourAudio.volume = drainSpeed * pourAudioVolumeCoefficient;
+		pourAudio.pitch = 1 + Mathf.Max(0, spillAmount * overflowPitchCoefficient);
 
 		if (spillParticles)
 		{

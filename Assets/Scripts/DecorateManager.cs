@@ -76,12 +76,21 @@ public class DecorateManager : MonoBehaviour, IStation
             float sum = c.layToRestScore + currentCustomer.cookScore + c.pourScore + c.decorScore;
             if (sum / 4 < 0.5)
             {
-                lifeManager.LoseLife();
-            }
-            GameManager.instance.score += (int)Mathf.Ceil(sum * 100);
+                AudioManager.instance.PlaySound("Urn Complete Fail");
+                Invoke(nameof(LoseLife), 3);
+            } else
+            {
+				AudioManager.instance.PlaySound("Urn Complete Success");
+			}
+			GameManager.instance.score += (int)Mathf.Ceil(sum * 100);
             resultsManager.DisplayResults(c);
             currentCustomer = null;
         }
+	}
+
+    private void LoseLife()
+    {
+        lifeManager.LoseLife();
 	}
 
 	public void Enqueue(Customer customer)
@@ -131,10 +140,16 @@ public class DecorateManager : MonoBehaviour, IStation
     {
 		yield return new WaitUntil(() => ashBag.ashRemaining <= 0);
 		urn.animator.SetBool("Open", false);
+        Invoke(nameof(PlayUrnCloseSound), 0.25f);
         currentState = States.Decorating;
 		yield return new WaitForSeconds(0.3f);
 		DecoratingEnter();
 	}
+
+    private void PlayUrnCloseSound()
+    {
+        AudioManager.instance.PlaySound("Urn Lid Close");
+    }
 
     public void DecoratingEnter()
     {
@@ -204,13 +219,16 @@ public class DecorateManager : MonoBehaviour, IStation
             if (deco && goals.Count > 0)
             {
                 Transform decoTransform = deco.transform;
-                float min = Mathf.Abs(Mathf.Abs(goals[0].position.x) - Mathf.Abs(decoTransform.position.x)) + Mathf.Abs(Mathf.Abs(goals[0].position.y) - Mathf.Abs(decoTransform.position.y));
+                // float min = Mathf.Abs(Mathf.Abs(goals[0].position.x) - Mathf.Abs(decoTransform.position.x)) + Mathf.Abs(Mathf.Abs(goals[0].position.y) - Mathf.Abs(decoTransform.position.y));
                 Transform best = goals[0];
+                float min = (best.position - decoTransform.position).magnitude;
                 int bestI = 0;
                 for (int i = 0; i < goals.Count; i++)
                 {
-                    float accuracy = Mathf.Abs(Mathf.Abs(goals[i].position.x) - Mathf.Abs(decoTransform.position.x)) + Mathf.Abs(Mathf.Abs(goals[i].position.y) - Mathf.Abs(decoTransform.position.y));
-                    if (accuracy < min)
+                    // float accuracy = Mathf.Abs(Mathf.Abs(goals[i].position.x) - Mathf.Abs(decoTransform.position.x)) + Mathf.Abs(Mathf.Abs(goals[i].position.y) - Mathf.Abs(decoTransform.position.y));
+                    float accuracy = (goals[i].position - decoTransform.position).magnitude;
+					Debug.Log($"{min} {accuracy}");
+					if (accuracy < min)
                     {
                         min = accuracy;
                         best = goals[i];
@@ -218,13 +236,20 @@ public class DecorateManager : MonoBehaviour, IStation
                     }
                 }
 
+                Debug.Log($"Flower {deco.GetComponent<Decoration>().type} best at {bestI}");
+
                 if (deco.GetComponent<Decoration>().type != c.desiredFlowers[bestI])
-                    totalAccuracy += 3;
-                totalAccuracy += min;
-                goals.Remove(best);
+                {
+                    Debug.Log($"Wrong Flower! Expected {c.desiredFlowers[bestI]}, but got {deco.GetComponent<Decoration>().type} at position {bestI}");
+                    Debug.Log(c.desiredFlowers);
+					totalAccuracy += 3;
+				}
+				totalAccuracy += Mathf.Max(0, min - 0.05f);
             }
-        }
+
+		}
         float finalScore = Mathf.Clamp01((5 - (totalAccuracy / 2)) / 5);
+        Debug.Log(totalAccuracy + " " + finalScore);
         if (extraItems < 0)
         {
             finalScore *= urn.decorations.Count / Customer.DECORATION_COUNT;

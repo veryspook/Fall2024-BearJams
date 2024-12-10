@@ -28,8 +28,9 @@ public class OrderManager : MonoBehaviour
 
     public void AddOrder(Customer customer)
     {
+		AudioManager.instance.PlaySound("Ticket Create");
 		GameObject orderObj = Instantiate(orderPrefab);
-        orderObj.transform.SetParent(ordersParent);
+		orderObj.transform.SetParent(ordersParent);
 		Order order = orderObj.GetComponent<Order>();
         order.manager = this;
 		order.customer = customer;

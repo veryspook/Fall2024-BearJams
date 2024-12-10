@@ -77,12 +77,15 @@ public class GameManager : MonoBehaviour
 
 		while (true)
 		{
-			customerCooldown = Mathf.Max(7, 30 - Mathf.Sqrt(gameDuration));
+			customerCooldown = Mathf.Max(7, 25 - Mathf.Pow(gameDuration, 0.33f));
 			nextCustomerTime = customerCooldown;
 			if (frontDesk.GetComponent<IStation>().customerQueue.Count < MAX_CUSTOMERS)
 				frontDesk.GetComponent<IStation>().customerQueue.Add(Customer.Generate());
 			else
+			{
+				AudioManager.instance.PlaySound("Life Timer");
 				lifeManager.LoseLife();
+			}
 
 			yield return new WaitUntil(() => nextCustomerTime <= 0);
 		}

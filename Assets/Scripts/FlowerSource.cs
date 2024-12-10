@@ -44,6 +44,7 @@ public class FlowerSource : MonoBehaviour
 			{
 				dragging = true;
 				prefabInstance = Instantiate(flowerPrefab);
+				AudioManager.instance.PlaySound("Flower Pick");
 			}
 		}
 		else if (Input.GetMouseButtonUp(0))
@@ -53,6 +54,7 @@ public class FlowerSource : MonoBehaviour
 			if (prefabInstance && urn && hit && hit.collider && hit.collider.transform.parent == urn.gameObject.transform)
 			{
 				prefabInstance.transform.parent = hit.collider.gameObject.transform;
+				AudioManager.instance.PlaySound("Flower Place");
 				urn.decorations.Add(prefabInstance);
 				prefabInstance = null;
 			} else

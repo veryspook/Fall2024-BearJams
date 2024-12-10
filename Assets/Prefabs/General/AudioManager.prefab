@@ -51,30 +51,70 @@ MonoBehaviour:
   sounds:
   - name: Button Click
     sound: {fileID: 8300000, guid: 2eed160d276a83e49a476fad4eaa0ce6, type: 3}
+    volumeChangeRelative: 0
   - name: Coffin Close
     sound: {fileID: 8300000, guid: 88ab39f28a039384da045ab854a6cd4d, type: 3}
+    volumeChangeRelative: 0
   - name: Drag Body
     sound: {fileID: 8300000, guid: 5abd68df06383b4479d0e54af957bc32, type: 3}
+    volumeChangeRelative: 0
   - name: Fire Start
     sound: {fileID: 8300000, guid: 8fda9ce6ffd602f44b266776df970090, type: 3}
+    volumeChangeRelative: 0
   - name: Fire Loop
     sound: {fileID: 8300000, guid: 8fda9ce6ffd602f44b266776df970090, type: 3}
+    volumeChangeRelative: 0
   - name: Footsteps
     sound: {fileID: 8300000, guid: c60336b50815510428f1ee1990c590ca, type: 3}
+    volumeChangeRelative: 0
   - name: Life Timer
     sound: {fileID: 8300000, guid: e78e86a473c2eb94891edb8b800d4d6d, type: 3}
+    volumeChangeRelative: 0
   - name: Pouring Ash
     sound: {fileID: 8300000, guid: 116efd45f6974db4491c6b144ede6ff1, type: 3}
+    volumeChangeRelative: 0
   - name: Speech Bubble
     sound: {fileID: 8300000, guid: 74d570fb5a153e9458d28ba34ff52e7f, type: 3}
+    volumeChangeRelative: -0.4
   - name: Station Swap
     sound: {fileID: 8300000, guid: 61faaf2143980ac4f9e181b85572edde, type: 3}
+    volumeChangeRelative: 0
   - name: Take Out Tray
     sound: {fileID: 8300000, guid: b1d751f983a180243be485acab29ceee, type: 3}
+    volumeChangeRelative: 0
   - name: Urn Place
-    sound: {fileID: 8300000, guid: b1d751f983a180243be485acab29ceee, type: 3}
+    sound: {fileID: 8300000, guid: 237576e551b52ba48ab54b7d31eb21eb, type: 3}
+    volumeChangeRelative: -0.1
   - name: Urn Slide
-    sound: {fileID: 8300000, guid: b1d751f983a180243be485acab29ceee, type: 3}
+    sound: {fileID: 8300000, guid: 44b77fce73798934d830a48f31f445e9, type: 3}
+    volumeChangeRelative: -0.1
+  - name: Urn Lid Close
+    sound: {fileID: 8300000, guid: cfc6c7aec4f5b7a4fb68e4d577a624e7, type: 3}
+    volumeChangeRelative: 0
+  - name: Urn Complete Success
+    sound: {fileID: 8300000, guid: 4c755a49f33afda498607d6f8db315de, type: 3}
+    volumeChangeRelative: -0.6
+  - name: Urn Complete Fail
+    sound: {fileID: 8300000, guid: 558efc7e400f65246b12c47868cb1488, type: 3}
+    volumeChangeRelative: -0.6
+  - name: Urn Complete Fail
+    sound: {fileID: 8300000, guid: 558efc7e400f65246b12c47868cb1488, type: 3}
+    volumeChangeRelative: 0
+  - name: Ticket Create
+    sound: {fileID: 8300000, guid: 36d73c6cd8158b74ebb3ef4c0c0b47f0, type: 3}
+    volumeChangeRelative: 0
+  - name: Ticket Grab
+    sound: {fileID: 8300000, guid: b1706027862112643b00d5704a1abcb3, type: 3}
+    volumeChangeRelative: 0
+  - name: Ticket Place
+    sound: {fileID: 8300000, guid: d07f08ca2dfefe24f94dc95918e2deff, type: 3}
+    volumeChangeRelative: 0
+  - name: Flower Pick
+    sound: {fileID: 8300000, guid: 6fd84f1f12c86a848beacbd5d9e7daf9, type: 3}
+    volumeChangeRelative: 0
+  - name: Flower Place
+    sound: {fileID: 8300000, guid: cb87b23cfe96e644e90e89f7f0f7b94f, type: 3}
+    volumeChangeRelative: 0
   tracks: []
 --- !u!82 &3923318402742904880
 AudioSource:
@@ -91,7 +131,7 @@ AudioSource:
   m_Volume: 0.664
   m_Pitch: 1
   Loop: 1
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128

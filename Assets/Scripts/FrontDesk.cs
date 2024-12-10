@@ -15,6 +15,7 @@ public class FrontDesk : MonoBehaviour, IStation
 	public float flowerScale = 2.5f;
 	public SpriteRenderer speechSprite;
 	public GameObject speechBubble;
+	public float customerTalkSpeed = 0.8f;
 
 	private void Awake()
 	{
@@ -56,19 +57,19 @@ public class FrontDesk : MonoBehaviour, IStation
 			speechSprite.transform.localScale = Vector3.one * weightScale;
 			animator.SetTrigger("Speech");
 			AudioManager.instance.PlaySound("Speech Bubble");
-			yield return new WaitForSeconds(0.9f);
+			yield return new WaitForSeconds(customerTalkSpeed);
 			speechSprite.sprite = GameManager.instance.urnSprites[(int)currentCustomer.desiredUrn];
 			speechSprite.transform.localScale = Vector3.one * urnScale;
 			animator.SetTrigger("Speech");
 			AudioManager.instance.PlaySound("Speech Bubble");
-			yield return new WaitForSeconds(0.9f);
+			yield return new WaitForSeconds(customerTalkSpeed);
 			for (int i = 0; i < Customer.DECORATION_COUNT; i++)
 			{
 				speechSprite.sprite = GameManager.instance.flowerSprites[(int)currentCustomer.desiredFlowers[i]];
 				speechSprite.transform.localScale = Vector3.one * flowerScale;
 				animator.SetTrigger("Speech");
 				AudioManager.instance.PlaySound("Speech Bubble");
-				yield return new WaitForSeconds(0.9f);
+				yield return new WaitForSeconds(customerTalkSpeed);
 			}
 		}
 		GameManager.instance.orderManager.AddOrder(currentCustomer);

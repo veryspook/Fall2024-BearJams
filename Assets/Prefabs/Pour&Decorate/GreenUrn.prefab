@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 2696929140982205557}
   - component: {fileID: 3151389312133591653}
   - component: {fileID: 2853521216286289137}
+  - component: {fileID: 6529301115222921824}
   m_Layer: 0
   m_Name: GreenUrn
   m_TagString: Untagged
@@ -239,6 +240,18 @@ PolygonCollider2D:
       - {x: 0.87142855, y: -2.825}
       - {x: 1.2857143, y: -2.6892858}
   m_UseDelaunayMesh: 0
+--- !u!114 &6529301115222921824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448607340244790941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 358e5354015a2b94aac8d392c5edb2b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2396739926496447976
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,8 +369,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 879536723226623438}
-  - {fileID: 4949941418576533444}
   - {fileID: 702018375611945933}
+  - {fileID: 4949941418576533444}
   - {fileID: 4008294614550172410}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5228,7 +5241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8061634687545634915, guid: 2cf83e0183c9224419f318ae119022a7, type: 3}
       propertyPath: m_Name
-      value: Target 1
+      value: Target 2
       objectReference: {fileID: 0}
     - target: {fileID: 8061634687545634915, guid: 2cf83e0183c9224419f318ae119022a7, type: 3}
       propertyPath: m_IsActive
@@ -5294,7 +5307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8061634687545634915, guid: 2cf83e0183c9224419f318ae119022a7, type: 3}
       propertyPath: m_Name
-      value: Target 2
+      value: Target 1
       objectReference: {fileID: 0}
     - target: {fileID: 8061634687545634915, guid: 2cf83e0183c9224419f318ae119022a7, type: 3}
       propertyPath: m_IsActive

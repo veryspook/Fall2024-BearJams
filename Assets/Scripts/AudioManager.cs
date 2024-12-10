@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 public class AudioManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class AudioManager : MonoBehaviour
     public struct Sound {
         public string name;
         public AudioClip sound;
+        public float volumeChangeRelative;
     }
     public Sound[] sounds;
     public Sound[] tracks;
@@ -34,8 +36,7 @@ public class AudioManager : MonoBehaviour
         if (s.name == "") {
             Debug.Log("Sound " + name + "not found");
         } else {
-            soundSource.clip = s.sound;
-            soundSource.Play();
+            PlayClipAtPoint(s.sound, Camera.main.transform.position, 1 + s.volumeChangeRelative).spatialBlend = 0;
         }
     }
 
@@ -48,4 +49,17 @@ public class AudioManager : MonoBehaviour
             musicSource.Play();
         }
     }
+
+	public static AudioSource PlayClipAtPoint(AudioClip clip, Vector3 position, float volume)
+	{
+		GameObject gameObject = new GameObject("One shot audio");
+		gameObject.transform.position = position;
+		AudioSource audioSource = (AudioSource)gameObject.AddComponent(typeof(AudioSource));
+		audioSource.clip = clip;
+		audioSource.spatialBlend = 1f;
+		audioSource.volume = volume;
+		audioSource.Play();
+		Destroy(gameObject, clip.length * ((Time.timeScale < 0.01f) ? 0.01f : Time.timeScale));
+        return audioSource;
+	}
 }

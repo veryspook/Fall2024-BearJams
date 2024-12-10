@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.46226418, g: 0.36414206, b: 0.36414206, a: 0.392}
+  m_Color: {r: 0.025364898, g: 0.018422931, b: 0.05660379, a: 0.77254903}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -565,8 +565,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1195,8 +1195,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1590,7 +1590,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Musician
+  m_text: Sound
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 840018e36c4cf4477957a8b93372ef79, type: 2}
   m_sharedMaterial: {fileID: 9107862836527921343, guid: 840018e36c4cf4477957a8b93372ef79, type: 2}
@@ -2560,7 +2560,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Musician
+  m_text: Sound
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 840018e36c4cf4477957a8b93372ef79, type: 2}
   m_sharedMaterial: {fileID: 9107862836527921343, guid: 840018e36c4cf4477957a8b93372ef79, type: 2}
@@ -2569,8 +2569,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3009,7 +3009,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -31.000092, y: -86.974464}
+  m_AnchoredPosition: {x: -12.53, y: -103.3}
   m_SizeDelta: {x: 448.3505, y: 3.6412}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1748387936
@@ -3032,7 +3032,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Jeremy Fernandez
+  m_text: 'Darren Ting
+
+    Jeremy Fernandez'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 840018e36c4cf4477957a8b93372ef79, type: 2}
   m_sharedMaterial: {fileID: 9107862836527921343, guid: 840018e36c4cf4477957a8b93372ef79, type: 2}
@@ -3066,7 +3068,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -3161,11 +3163,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3498348955676134302, guid: 49966c288c41b422b865357d44bdc702, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.1500001
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498348955676134302, guid: 49966c288c41b422b865357d44bdc702, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.39
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498348955676134302, guid: 49966c288c41b422b865357d44bdc702, type: 3}
       propertyPath: m_LocalPosition.z

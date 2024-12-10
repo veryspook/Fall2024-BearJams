@@ -23,6 +23,7 @@ public class Order : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHan
 
 	public void OnBeginDrag(PointerEventData eventData)
 	{
+		AudioManager.instance.PlaySound("Ticket Grab");
 		desiredScale = manager.ticketFocusScale;
 	}
 
@@ -36,6 +37,7 @@ public class Order : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHan
 
 	public void OnEndDrag(PointerEventData eventData)
 	{
+		AudioManager.instance.PlaySound("Ticket Place");
 		desiredScale = manager.ticketRopeScale;
 		float scale = transform.lossyScale.x;
 		Order p = manager.pinned;
