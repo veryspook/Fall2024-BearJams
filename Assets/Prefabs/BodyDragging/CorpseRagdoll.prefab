@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1757067984001291051}
   - component: {fileID: 5192507579750579632}
   - component: {fileID: 9132741968291415156}
+  - component: {fileID: 1707538862363165777}
   m_Layer: 14
   m_Name: R Calf
   m_TagString: Untagged
@@ -184,6 +185,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 2.6}
   m_EdgeRadius: 0
+--- !u!114 &1707538862363165777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220238087343624003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45547728ce42d664ba1f9f7df3ed461f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 5abd68df06383b4479d0e54af957bc32, type: 3}
+  maxVolume: 0.5
 --- !u!1 &807896301598240750
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,6 +212,7 @@ GameObject:
   - component: {fileID: 5183173298620064094}
   - component: {fileID: 4763589641173561596}
   - component: {fileID: 4549553697814210722}
+  - component: {fileID: 4439956668304338047}
   m_Layer: 14
   m_Name: R Thigh
   m_TagString: Untagged
@@ -368,6 +384,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4, y: 1.3}
   m_EdgeRadius: 0
+--- !u!114 &4439956668304338047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807896301598240750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45547728ce42d664ba1f9f7df3ed461f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 5abd68df06383b4479d0e54af957bc32, type: 3}
+  maxVolume: 0.5
 --- !u!1 &897872448838436734
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,6 +410,7 @@ GameObject:
   - component: {fileID: 5242879776233293553}
   - component: {fileID: 5011734470499390532}
   - component: {fileID: 718447908629154563}
+  - component: {fileID: 6697982170414178911}
   m_Layer: 14
   m_Name: Hip
   m_TagString: Untagged
@@ -526,6 +557,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.7}
   m_EdgeRadius: 0
+--- !u!114 &6697982170414178911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897872448838436734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45547728ce42d664ba1f9f7df3ed461f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 5abd68df06383b4479d0e54af957bc32, type: 3}
+  maxVolume: 0.5
 --- !u!1 &1655515335735550578
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,6 +584,7 @@ GameObject:
   - component: {fileID: 9033288633363951612}
   - component: {fileID: 5199533809753871452}
   - component: {fileID: 8592788590972541584}
+  - component: {fileID: 6071776113175006943}
   m_Layer: 14
   m_Name: L Thigh
   m_TagString: Untagged
@@ -710,6 +756,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4, y: 1.3}
   m_EdgeRadius: 0
+--- !u!114 &6071776113175006943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655515335735550578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45547728ce42d664ba1f9f7df3ed461f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 5abd68df06383b4479d0e54af957bc32, type: 3}
+  maxVolume: 0.5
 --- !u!1 &1666849773839396410
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,6 +783,7 @@ GameObject:
   - component: {fileID: 324144520905780441}
   - component: {fileID: 2095214296504419547}
   - component: {fileID: 7074584889741787088}
+  - component: {fileID: 6288542735824279242}
   m_Layer: 14
   m_Name: R UpperArm
   m_TagString: Untagged
@@ -894,6 +955,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4, y: 1.3}
   m_EdgeRadius: 0
+--- !u!114 &6288542735824279242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666849773839396410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45547728ce42d664ba1f9f7df3ed461f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 5abd68df06383b4479d0e54af957bc32, type: 3}
+  maxVolume: 0.5
 --- !u!1 &3961812746112026701
 GameObject:
   m_ObjectHideFlags: 0
@@ -906,6 +981,7 @@ GameObject:
   - component: {fileID: 8570112243021038621}
   - component: {fileID: 6063348193016958620}
   - component: {fileID: 6336665898726804071}
+  - component: {fileID: 4720219684061322071}
   m_Layer: 14
   m_Name: Head
   m_TagString: Untagged
@@ -1032,6 +1108,20 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: -70
     m_UpperAngle: 70
+--- !u!114 &4720219684061322071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3961812746112026701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45547728ce42d664ba1f9f7df3ed461f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 5abd68df06383b4479d0e54af957bc32, type: 3}
+  maxVolume: 0.5
 --- !u!1 &3974927570424651411
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,6 +1135,7 @@ GameObject:
   - component: {fileID: 1238420920041470449}
   - component: {fileID: 745254136156869700}
   - component: {fileID: 2084765484791641154}
+  - component: {fileID: 9002284095059308525}
   m_Layer: 14
   m_Name: R LowerArm
   m_TagString: Untagged
@@ -1216,6 +1307,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4, y: 1.3}
   m_EdgeRadius: 0
+--- !u!114 &9002284095059308525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3974927570424651411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45547728ce42d664ba1f9f7df3ed461f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 5abd68df06383b4479d0e54af957bc32, type: 3}
+  maxVolume: 0.5
 --- !u!1 &4502924303382431890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,6 +1410,7 @@ GameObject:
   - component: {fileID: 8120086427287792807}
   - component: {fileID: 8700093748760900974}
   - component: {fileID: 4806170769312007497}
+  - component: {fileID: 7595199129160060133}
   m_Layer: 14
   m_Name: Torso
   m_TagString: Untagged
@@ -1476,6 +1582,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.5}
   m_EdgeRadius: 0
+--- !u!114 &7595199129160060133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6209204103390019026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45547728ce42d664ba1f9f7df3ed461f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 5abd68df06383b4479d0e54af957bc32, type: 3}
+  maxVolume: 0.5
 --- !u!1 &6997848786488159680
 GameObject:
   m_ObjectHideFlags: 0
@@ -1489,6 +1609,7 @@ GameObject:
   - component: {fileID: 3511266881020734610}
   - component: {fileID: 1644282943333421706}
   - component: {fileID: 1448242280242958646}
+  - component: {fileID: 6096525597794571383}
   m_Layer: 14
   m_Name: L UpperArm
   m_TagString: Untagged
@@ -1660,6 +1781,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4, y: 1.3}
   m_EdgeRadius: 0
+--- !u!114 &6096525597794571383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6997848786488159680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45547728ce42d664ba1f9f7df3ed461f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 5abd68df06383b4479d0e54af957bc32, type: 3}
+  maxVolume: 0.5
 --- !u!1 &7275812524591223031
 GameObject:
   m_ObjectHideFlags: 0
@@ -1673,6 +1808,7 @@ GameObject:
   - component: {fileID: 2080316802828999509}
   - component: {fileID: 6570918277151002399}
   - component: {fileID: 4545590343992595344}
+  - component: {fileID: 1345181125640151266}
   m_Layer: 14
   m_Name: L LowerArm
   m_TagString: Untagged
@@ -1844,6 +1980,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4, y: 1.3}
   m_EdgeRadius: 0
+--- !u!114 &1345181125640151266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7275812524591223031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45547728ce42d664ba1f9f7df3ed461f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 5abd68df06383b4479d0e54af957bc32, type: 3}
+  maxVolume: 0.5
 --- !u!1 &8188882331011752681
 GameObject:
   m_ObjectHideFlags: 0
@@ -1857,6 +2007,7 @@ GameObject:
   - component: {fileID: 373064064097665500}
   - component: {fileID: 887190896298392604}
   - component: {fileID: 6125092527867498664}
+  - component: {fileID: 2884352201594489463}
   m_Layer: 14
   m_Name: L Calf
   m_TagString: Untagged
@@ -2028,3 +2179,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 2.6}
   m_EdgeRadius: 0
+--- !u!114 &2884352201594489463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8188882331011752681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45547728ce42d664ba1f9f7df3ed461f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 5abd68df06383b4479d0e54af957bc32, type: 3}
+  maxVolume: 0.5
