@@ -11,7 +11,6 @@ public class DecorateManager : MonoBehaviour, IStation
     public List<GameObject> urns = new List<GameObject>();
     public List<Sprite> urnSprites = new List<Sprite>();
     public List<FlowerSource> flowerSources = new List<FlowerSource>();
-    public List<GameObject> decorations;
 
     public Customer currentCustomer { get; set; }
     public List<Customer> customerQueue { get; set; } = new List<Customer>();
@@ -74,7 +73,7 @@ public class DecorateManager : MonoBehaviour, IStation
             Destroy(om.pinned.gameObject);
             om.pinned = null;
             float sum = c.layToRestScore + currentCustomer.cookScore + c.pourScore + c.decorScore;
-            if (sum / 4 < 0.5)
+            if (sum / 4 < 0.7)
             {
                 AudioManager.instance.PlaySound("Urn Complete Fail");
                 Invoke(nameof(LoseLife), 3);
@@ -166,7 +165,7 @@ public class DecorateManager : MonoBehaviour, IStation
         {
 			Destroy(d);
 		}
-        decorations.Clear();
+        urn.decorations.Clear();
 	}
 
     public void NextUrnSelect()
@@ -200,6 +199,7 @@ public class DecorateManager : MonoBehaviour, IStation
             finalScore += 0.3f;
         }
         finalScore += 0.7f * CheckAccuracy(c);
+        Debug.Log(finalScore);
         return Mathf.Clamp01(finalScore);
     }
 
@@ -227,7 +227,7 @@ public class DecorateManager : MonoBehaviour, IStation
                 {
                     // float accuracy = Mathf.Abs(Mathf.Abs(goals[i].position.x) - Mathf.Abs(decoTransform.position.x)) + Mathf.Abs(Mathf.Abs(goals[i].position.y) - Mathf.Abs(decoTransform.position.y));
                     float accuracy = (goals[i].position - decoTransform.position).magnitude;
-					Debug.Log($"{min} {accuracy}");
+					// Debug.Log($"{min} {accuracy}");
 					if (accuracy < min)
                     {
                         min = accuracy;
@@ -249,15 +249,15 @@ public class DecorateManager : MonoBehaviour, IStation
 
 		}
         float finalScore = Mathf.Clamp01((5 - (totalAccuracy / 2)) / 5);
-        Debug.Log(totalAccuracy + " " + finalScore);
         if (extraItems < 0)
         {
-            finalScore *= urn.decorations.Count / Customer.DECORATION_COUNT;
+            finalScore *= ((float) urn.decorations.Count) / Customer.DECORATION_COUNT;
         } else if (extraItems > 0)
         {
-            finalScore *= Customer.DECORATION_COUNT / urn.decorations.Count;
+            finalScore *= ((float) Customer.DECORATION_COUNT) / urn.decorations.Count;
 		}
-        return finalScore;
+        Debug.Log($"Check Accuracy: {finalScore}, Total Accuracy: {totalAccuracy}");
+		return finalScore;
     }
 
 }

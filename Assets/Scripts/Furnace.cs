@@ -86,7 +86,7 @@ public class Furnace : MonoBehaviour
             customer.cookScore = 1;
         } else {
             if (readyTime > currTime) {
-                customer.cookScore = (readyTime - currTime)/readyTime; 
+                customer.cookScore = 1 - (readyTime - currTime)/readyTime; 
             } else {
                 customer.cookScore = Mathf.Max(0, maxTime - currTime)/(maxTime - burnTime);
             }

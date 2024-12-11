@@ -13,6 +13,7 @@ public class DragCorpse : MonoBehaviour
 	public Vector2 startPos;
 	public Animator coffinAnimator;
 	public LayToRest manager;
+	private bool exiting;
 
 	private bool locked = false;
 
@@ -23,6 +24,17 @@ public class DragCorpse : MonoBehaviour
 		coffin = transform.parent.GetComponent<Collider2D>();
 		coffinAnimator = transform.parent.GetComponent<Animator>();
 		coffin.GetComponent<Coffin>().corpse = this;
+	}
+
+	private void OnEnable()
+	{
+		if (exiting)
+		{
+			coffinAnimator.SetTrigger("Exit");
+			Destroy(gameObject);
+			manager.currentCustomer = null;
+			manager.reset = true;
+		}
 	}
 
 	public void Enter(Customer customer)
@@ -97,6 +109,7 @@ public class DragCorpse : MonoBehaviour
 		currentCustomer.layToRestScore = GetPercentCovered();
 		Debug.Log(currentCustomer.layToRestScore);
 		GameManager.instance.burn.GetComponent<IStation>().Enqueue(currentCustomer);
+		exiting = true;
 		yield return new WaitForSeconds(1f);
 		manager.currentCustomer = null;
 		manager.reset = true;
@@ -158,6 +171,6 @@ public class DragCorpse : MonoBehaviour
 		Vector3 insideMax = c.ClosestPoint(b.max);
 		Vector3 diff = insideMax - insideMin;
 		float areaInside = diff.x * diff.y;
-		return Mathf.Clamp01((areaInside / area) / 0.035f + 0.35f);
+		return Mathf.Clamp01((areaInside / area) / 0.035f + 0.30f);
 	}
 }

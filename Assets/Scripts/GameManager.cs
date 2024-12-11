@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
 
 		while (true)
 		{
-			customerCooldown = Mathf.Max(7, 25 - Mathf.Pow(gameDuration, 0.33f));
+			customerCooldown = Mathf.Max(10, 25 - Mathf.Pow(gameDuration, 1 / 2.5f));
 			nextCustomerTime = customerCooldown;
 			if (frontDesk.GetComponent<IStation>().customerQueue.Count < MAX_CUSTOMERS)
 				frontDesk.GetComponent<IStation>().customerQueue.Add(Customer.Generate());

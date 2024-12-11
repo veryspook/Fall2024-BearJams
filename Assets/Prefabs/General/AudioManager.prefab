@@ -93,10 +93,10 @@ MonoBehaviour:
     volumeChangeRelative: 0
   - name: Urn Complete Success
     sound: {fileID: 8300000, guid: 4c755a49f33afda498607d6f8db315de, type: 3}
-    volumeChangeRelative: -0.6
+    volumeChangeRelative: -0.7
   - name: Urn Complete Fail
     sound: {fileID: 8300000, guid: 558efc7e400f65246b12c47868cb1488, type: 3}
-    volumeChangeRelative: -0.6
+    volumeChangeRelative: -0.7
   - name: Urn Complete Fail
     sound: {fileID: 8300000, guid: 558efc7e400f65246b12c47868cb1488, type: 3}
     volumeChangeRelative: 0
